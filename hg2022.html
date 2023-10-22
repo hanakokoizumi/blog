@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hanako Blog">
+    
+    <meta name="author" content="Hanako">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://hanako.me/hg2022.html"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="打完 Hackergame，我表示：我好菜哦。勉强进了前 50，有一题因为看错题目差点做出来，只能说不愧是我。话说今年的 Linux Kernel Pwn 题好多哦。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hackergame 2022 Writeup">
+<meta property="og:url" content="https://hanako.me/hg2022.html">
+<meta property="og:site_name" content="Hanako Blog">
+<meta property="og:description" content="打完 Hackergame，我表示：我好菜哦。勉强进了前 50，有一题因为看错题目差点做出来，只能说不愧是我。话说今年的 Linux Kernel Pwn 题好多哦。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hanako.me/img/hackergame-2022/Untitled.png">
+<meta property="og:image" content="https://hanako.me/img/hackergame-2022/Untitled%201.png">
+<meta property="og:image" content="https://hanako.me/img/hackergame-2022/Untitled%202.png">
+<meta property="og:image" content="https://hanako.me/img/hackergame-2022/Untitled%203.png">
+<meta property="og:image" content="https://hanako.me/img/hackergame-2022/Untitled%204.png">
+<meta property="og:image" content="https://hanako.me/img/hackergame-2022/Untitled%205.png">
+<meta property="og:image" content="https://hanako.me/img/hackergame-2022/Untitled%206.png">
+<meta property="og:image" content="https://hanako.me/img/hackergame-2022/Untitled%207.png">
+<meta property="og:image" content="https://hanako.me/img/hackergame-2022/Untitled%208.png">
+<meta property="og:image" content="https://hanako.me/img/hackergame-2022/Untitled%209.png">
+<meta property="og:image" content="https://hanako.me/img/hackergame-2022/Untitled%2010.png">
+<meta property="og:image" content="https://hanako.me/img/hackergame-2022/Untitled%2011.png">
+<meta property="og:image" content="https://hanako.me/img/hackergame-2022/Untitled%2012.png">
+<meta property="og:image" content="https://hanako.me/img/hackergame-2022/Untitled%2013.png">
+<meta property="og:image" content="https://hanako.me/img/hackergame-2022/Untitled%2014.png">
+<meta property="og:image" content="https://hanako.me/img/hackergame-2022/Untitled%2015.png">
+<meta property="og:image" content="https://hanako.me/img/hackergame-2022/Untitled%2016.png">
+<meta property="og:image" content="https://hanako.me/img/hackergame-2022/Untitled%2017.png">
+<meta property="og:image" content="https://hanako.me/img/hackergame-2022/Untitled%2018.png">
+<meta property="og:image" content="https://hanako.me/img/hackergame-2022/Untitled%2019.png">
+<meta property="article:published_time" content="2022-10-29T17:49:33.000Z">
+<meta property="article:modified_time" content="2023-10-22T14:48:36.487Z">
+<meta property="article:author" content="Hanako">
+<meta property="article:tag" content="CTF">
+<meta property="article:tag" content="信息安全">
+<meta property="article:tag" content="Hackergame">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hanako.me/img/hackergame-2022/Untitled.png">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/null" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/null">
+    <meta name="theme-color" content="#60af71">
+    <link rel="shortcut icon" href="/null">
+    <!--- Page Info-->
+    
+    <title>
+        
+            Hackergame 2022 Writeup -
+        
+        Hanako Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/assets/build/styles.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/fonts.css">
+
+    
+<link rel="stylesheet" href="/fonts/Satoshi/satoshi.css">
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    <!--- Inject Part-->
+    
+    <script id="hexo-configurations">
+    window.config = {"hostname":"hanako.me","root":"/","language":"zh-CN"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":false,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":true,"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#60af71","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js","enable":false,"site_pv":false,"site_uv":false,"post_pv":false},"single_page":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":false,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"Theme Redefine","subtitle":{"text":[],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":true},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.5.0","navbar":{"auto_hide":false,"color":{"left":"#60af71","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Status":{"path":"https://stats.uptimerobot.com/zyowMhGqLL","icon":"fa-regular fa-chart-bar"},"About":{"icon":"fa-regular fa-user","submenus":{"Me":"/about","Github":"https://github.com/hanakokoizumi","Blog":"https://hanako.me","Friends":"/friends"}}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"links":{"Archives":{"path":"/archives","icon":"fa-regular fa-archive"}}},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
+    window.lang_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="swup-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container">
+    
+    <div class="navbar-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                Hanako Blog
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-house"></i>
+                                        
+                                        首页
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/archives"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-archive"></i>
+                                        
+                                        归档
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    target="_blank" rel="noopener" href="https://stats.uptimerobot.com/zyowMhGqLL"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-chart-bar"></i>
+                                        
+                                        状态
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown" 
+                                    href="#" onClick="return false;">
+                                    
+                                        
+                                            <i class="fa-regular fa-user"></i>
+                                        
+                                        关于&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                    
+                                        <li>
+                                        <a href="/about">ME
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a target="_blank" rel="noopener" href="https://github.com/hanakokoizumi">GITHUB
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a href="https://hanako.me">BLOG
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a href="/friends">友情链接
+                                        </a>
+                                        </li>
+                                    
+                                    </ul>
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="navbar-drawer w-full absolute top-0 left-0 bg-background-color">
+        <ul class="drawer-navbar-list flex flex-col justify-start items-center">
+            
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex justify-center items-center">
+                        <a class="rounded-3xl py-1.5 px-5 hover:border hover:!text-primary active:!text-primary group " 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-regular fa-house"></i>
+                                
+                                首页
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex justify-center items-center">
+                        <a class="rounded-3xl py-1.5 px-5 hover:border hover:!text-primary active:!text-primary group " 
+                        href="/archives"  >
+                             
+                                
+                                    <i class="fa-regular fa-archive"></i>
+                                
+                                归档
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex justify-center items-center">
+                        <a class="rounded-3xl py-1.5 px-5 hover:border hover:!text-primary active:!text-primary group " 
+                        target="_blank" rel="noopener" href="https://stats.uptimerobot.com/zyowMhGqLL"  >
+                             
+                                
+                                    <i class="fa-regular fa-chart-bar"></i>
+                                
+                                状态
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex justify-center items-center">
+                        <a class="rounded-3xl py-1.5 px-5 hover:border hover:!text-primary active:!text-primary group has-dropdown" 
+                        href="#" onClick="return false;">
+                            
+                                
+                                    <i class="fa-regular fa-user"></i>
+                                
+                                关于&nbsp;<i class="group-hover:rotate-180 transition-transform fa-solid fa-chevron-down"></i>
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                              
+                        
+                            <li class="drawer-navbar-item text-base flex justify-center items-center hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                <a class="py-0.5" href="/about">ME</a>
+                            </li>
+                        
+                            <li class="drawer-navbar-item text-base flex justify-center items-center hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                <a class="py-0.5" target="_blank" rel="noopener" href="https://github.com/hanakokoizumi">GITHUB</a>
+                            </li>
+                        
+                            <li class="drawer-navbar-item text-base flex justify-center items-center hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                <a class="py-0.5" href="https://hanako.me">BLOG</a>
+                            </li>
+                        
+                            <li class="drawer-navbar-item text-base flex justify-center items-center hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                <a class="py-0.5" href="/friends">友情链接</a>
+                            </li>
+                        
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            
+                
+                
+                <img src="/img/hackergame-2022/Untitled.png" alt="Hackergame 2022 Writeup" class="max-w-none"/>
+                
+                <h1 class="article-title-cover">Hackergame 2022 Writeup</h1>
+            
+            </div>
+            
+                    
+        
+        
+            <div class="article-header flex flex-row gap-2 items-center">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="/img/hnk.jpg">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">Hanako</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2022-10-30 01:49:33</span>
+        <span class="mobile">2022-10-30 01:49:33</span>
+        <span class="hover-info">创建</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2023-10-22 22:48:36</span>
+            <span class="mobile">2023-10-22 22:48:36</span>
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/%E9%9A%8F%E4%BE%BF%E6%8A%98%E8%85%BE/">随便折腾</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/CTF/">CTF</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/">信息安全</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Hackergame/">Hackergame</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body">
+            <p>打完 Hackergame，我表示：我好菜哦。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/hackergame-2022/Untitled.png"
+                     
+                ></p>
+<p>勉强进了前 50，有一题因为看错题目差点做出来，只能说不愧是我。</p>
+<p>话说今年的 Linux Kernel Pwn 题好多哦。</p>
+<h2 id="签到"><a href="#签到" class="headerlink" title="签到"></a>签到</h2><p>0.1秒签个锤子。</p>
+<p>直接提交，改 URL 参数。</p>
+<h2 id="喵咪问答猫"><a href="#喵咪问答猫" class="headerlink" title="喵咪问答猫"></a>喵咪问答猫</h2><blockquote>
+<p>感谢红人 @ZenithalH 对本次猫咪问答的大力支持喵。</p>
+</blockquote>
+<ol>
+<li><a class="link"   target="_blank" rel="noopener" href="https://cybersec.ustc.edu.cn/2022/0826/c23847a565848/page.htm" >https://cybersec.ustc.edu.cn/2022/0826/c23847a565848/page.htm <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 喵。</li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://ftp.lug.ustc.edu.cn/%E6%B4%BB%E5%8A%A8/2022.9.20_%E8%BD%AF%E4%BB%B6%E8%87%AA%E7%94%B1%E6%97%A5/slides/gnome-wayland-user-perspective.pdf" >https://ftp.lug.ustc.edu.cn/活动/2022.9.20_软件自由日&#x2F;slides&#x2F;gnome-wayland-user-perspective.pdf <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 喵。</li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.betaarchive.com/forum/viewtopic.php?t=34790" >https://www.betaarchive.com/forum/viewtopic.php?t=34790 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 喵。</li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://github.com/torvalds/linux/search?q=CVE-2021-4034&type=commits" >https://github.com/torvalds/linux/search?q=CVE-2021-4034&amp;type=commits <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 喵。</li>
+<li>在 shodan 搜索这个 fingerprint 喵。</li>
+</ol>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/hackergame-2022/Untitled%201.png"
+                     
+                ></p>
+<ol>
+<li><a class="link"   target="_blank" rel="noopener" href="https://netfee.ustc.edu.cn/faq/index.html" >https://netfee.ustc.edu.cn/faq/index.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 不准确，遂从 2003-01-01 开始爆破喵。得到 2003-03-01 喵。</li>
+</ol>
+<h2 id="听话，让我看看！"><a href="#听话，让我看看！" class="headerlink" title="听话，让我看看！"></a>听话，让我看看！</h2><h3 id="VS-Code-里的-flag"><a href="#VS-Code-里的-flag" class="headerlink" title="VS Code 里的 flag"></a>VS Code 里的 flag</h3><p>直接在目录里搜索 flag 就有了。</p>
+<h3 id="Rclone-里的-flag"><a href="#Rclone-里的-flag" class="headerlink" title="Rclone 里的 flag"></a>Rclone 里的 flag</h3><p>翻遍了文件夹里所有和 rclone 有关的文件，觉得 user&#x2F;.config&#x2F;rclone&#x2F;rclone.conf 比较可疑。</p>
+<p><code>pass = tqqTq4tmQRDZ0sT_leJr7-WtCiHVXSMrVN49dWELPH1uce-5DPiuDtjBUN3EI38zvewgN5JaZqAirNnLlsQ</code></p>
+<p>找到 <a class="link"   target="_blank" rel="noopener" href="https://github.com/rclone/rclone/blob/master/fs/config/obscure/obscure.go" >https://github.com/rclone/rclone/blob/master/fs/config/obscure/obscure.go <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> ，应该只是经过简单编码，未做加密，遂丢进 go 里加个 main 函数调用 Reveal 函数就出结果。</p>
+<h2 id="Python-4-0"><a href="#Python-4-0" class="headerlink" title="Python 4.0"></a>Python 4.0</h2><blockquote>
+<p>鉴于 Python 3.14 的性能将超过 C++，如果 Python 3 有 100 个子版本的话，Python 4 估计就得靠量子计算机运行了。</p>
+</blockquote>
+<p>正则匹配替换大法好。</p>
+<h2 id="Lycoris-Recoil-足立脑子抽风版"><a href="#Lycoris-Recoil-足立脑子抽风版" class="headerlink" title="Lycoris Recoil 足立脑子抽风版"></a>Lycoris Recoil 足立脑子抽风版</h2><p>连 BeautifulSoup 都省了，split 出算式之后 <code>eval</code> 一下就出来了，之后马上交回去。</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">url = <span class="string">&#x27;http://202.38.93.111:10047/xcaptcha&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">solve</span>():</span><br><span class="line">    t1 = time.time()</span><br><span class="line">    session = requests.Session()</span><br><span class="line">    session.get(<span class="string">&#x27;http://202.38.93.111:10047/?token=&#x27;</span>)</span><br><span class="line">    resp = session.get(url)</span><br><span class="line">    q1 = resp.text.split(<span class="string">&#x27;&lt;label for=&quot;captcha1&quot;&gt;&#x27;</span>)[<span class="number">1</span>].split(<span class="string">&#x27; 的结果是？&#x27;</span>)[<span class="number">0</span>]</span><br><span class="line">    q2 = resp.text.split(<span class="string">&#x27;&lt;label for=&quot;captcha2&quot;&gt;&#x27;</span>)[<span class="number">1</span>].split(<span class="string">&#x27; 的结果是？&#x27;</span>)[<span class="number">0</span>]</span><br><span class="line">    q3 = resp.text.split(<span class="string">&#x27;&lt;label for=&quot;captcha3&quot;&gt;&#x27;</span>)[<span class="number">1</span>].split(<span class="string">&#x27; 的结果是？&#x27;</span>)[<span class="number">0</span>]</span><br><span class="line">    x1_1, x1_2 = q1.split(<span class="string">&#x27;+&#x27;</span>)</span><br><span class="line">    x2_1, x2_2 = q2.split(<span class="string">&#x27;+&#x27;</span>)</span><br><span class="line">    x3_1, x3_2 = q3.split(<span class="string">&#x27;+&#x27;</span>)</span><br><span class="line">    a1 = (<span class="built_in">int</span>(x1_1)) + (<span class="built_in">int</span>(x1_2))</span><br><span class="line">    a2 = (<span class="built_in">int</span>(x2_1)) + (<span class="built_in">int</span>(x2_2))</span><br><span class="line">    a3 = (<span class="built_in">int</span>(x3_1)) + (<span class="built_in">int</span>(x3_2))</span><br><span class="line"></span><br><span class="line">    t2 = time.time()</span><br><span class="line">    resp = session.post(url, headers=&#123;</span><br><span class="line">        <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;application/x-www-form-urlencoded&#x27;</span></span><br><span class="line">    &#125;, data=<span class="string">&#x27;captcha1=%s&amp;captcha2=%s&amp;captcha3=%s&#x27;</span> % (a1, a2, a3))</span><br><span class="line">    <span class="keyword">assert</span> <span class="string">&#x27;验证失败&#x27;</span> <span class="keyword">in</span> resp.text</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(<span class="literal">True</span>):</span><br><span class="line">    solve()</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="开盒"><a href="#开盒" class="headerlink" title="开盒"></a>开盒</h2><h3 id="第一题"><a href="#第一题" class="headerlink" title="第一题"></a>第一题</h3><p>把图片文件用 macOS 自带预览打开，全出来了。</p>
+<p>不过出题人很鸡贼地把位置信息抹掉了。</p>
+<h3 id="第二题"><a href="#第二题" class="headerlink" title="第二题"></a>第二题</h3><p>把建筑物丢进谷歌识图，得到 ZOZOマリンスタジアム。</p>
+<p>鉴于你们立本的郵便番号比较离谱，遂根据图片找到酒店。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/hackergame-2022/Untitled%202.png"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/hackergame-2022/Untitled%203.png"
+                     
+                ></p>
+<p>根据 EXIF 中的 Xiaomi sm6115 找到所有 Snapdragon 660 芯片的小米手机，比对摄像头形状，结论是 Redmi 9T，分辨率是 2340x1080。</p>
+<p>为了查航班信息，我向 flightradar24 出卖了自己的 AmEx 卡。记得取消 7 天的试用订阅。</p>
+<p>切换到 Multi 视图，Playback 到 UTC 2022 年 9 月 14 日 9 时 23 分，选中所有在海上的飞机，一个个尝试。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/hackergame-2022/Untitled%204.png"
+                     
+                ></p>
+<h2 id="数字爆破"><a href="#数字爆破" class="headerlink" title="数字爆破"></a>数字爆破</h2><p>不会。大力出奇迹，2w 次后出结果。</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line"><span class="built_in">range</span> = [<span class="number">0</span>, <span class="number">500000</span>, <span class="number">1000000</span>]</span><br><span class="line"></span><br><span class="line">token = <span class="string">&quot;&quot;</span></span><br><span class="line">url_login = <span class="string">&quot;http://202.38.93.111:18000/&quot;</span></span><br><span class="line">url_submit = <span class="string">&quot;http://202.38.93.111:18000/state&quot;</span></span><br><span class="line">session = requests.session()</span><br><span class="line">session.get(url_login, params=&#123;<span class="string">&#x27;token&#x27;</span>: token&#125;)</span><br><span class="line"></span><br><span class="line">i = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    i += <span class="number">1</span></span><br><span class="line">    num = <span class="built_in">range</span>[<span class="number">1</span>] / <span class="number">1000000</span></span><br><span class="line">    session.post(</span><br><span class="line">        url=url_submit,</span><br><span class="line">        headers=&#123;</span><br><span class="line">            <span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;text/plain;charset=UTF-8&quot;</span>,</span><br><span class="line">            <span class="string">&quot;authorization&quot;</span>: <span class="string">&quot;Bearer &quot;</span> + token</span><br><span class="line">        &#125;,</span><br><span class="line">        data=<span class="string">&quot;&lt;state&gt;&lt;guess&gt;%.6f&lt;/guess&gt;&lt;/state&gt;&quot;</span> % num</span><br><span class="line">    )</span><br><span class="line">    resp = session.get(</span><br><span class="line">        url=url_submit,</span><br><span class="line">        headers=&#123;</span><br><span class="line">            <span class="string">&quot;authorization&quot;</span>: <span class="string">&quot;Bearer &quot;</span> + token</span><br><span class="line">        &#125;</span><br><span class="line">    )</span><br><span class="line">    <span class="keyword">if</span> <span class="string">&#x27;guess&#x27;</span> <span class="keyword">not</span> <span class="keyword">in</span> resp.text:</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&#x27;flag&#x27;</span> <span class="keyword">in</span> resp.text:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;%s %.6f flag&#x27;</span> % (i, num))</span><br><span class="line">            exit(<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;%s %.6f right&#x27;</span> % (i, num))</span><br><span class="line">            <span class="built_in">range</span>[<span class="number">0</span>] = <span class="number">0</span></span><br><span class="line">            <span class="built_in">range</span>[<span class="number">2</span>] = <span class="number">1000000</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&#x27;more=&quot;true&quot;&#x27;</span> <span class="keyword">in</span> resp.text:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;%s %.6f more&#x27;</span> % (i, num))</span><br><span class="line">            <span class="built_in">range</span>[<span class="number">2</span>] = <span class="built_in">range</span>[<span class="number">1</span>]</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&#x27;less=&quot;true&quot;&#x27;</span> <span class="keyword">in</span> resp.text:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;%s %.6f less&#x27;</span> % (i, num))</span><br><span class="line">            <span class="built_in">range</span>[<span class="number">0</span>] = <span class="built_in">range</span>[<span class="number">1</span>]</span><br><span class="line">        <span class="built_in">range</span>[<span class="number">1</span>] = <span class="built_in">round</span>((<span class="built_in">range</span>[<span class="number">0</span>] + <span class="built_in">range</span>[<span class="number">2</span>]) / <span class="number">2</span>)</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="这么写论文会被学术界拉黑的罢"><a href="#这么写论文会被学术界拉黑的罢" class="headerlink" title="这么写论文会被学术界拉黑的罢"></a>这么写论文会被学术界拉黑的罢</h2><h3 id="纯文本"><a href="#纯文本" class="headerlink" title="纯文本"></a>纯文本</h3><p>用过 $\LaTeX$ 的应该都会。</p>
+<p><code>\input&#123;/flag1&#125;</code></p>
+<h3 id="特殊字符混入"><a href="#特殊字符混入" class="headerlink" title="特殊字符混入"></a>特殊字符混入</h3><p>参考 <a class="link"   target="_blank" rel="noopener" href="https://stackoverflow.com/questions/67437815/how-to-use-to-latex-read-all-content-of-a-file-concluding-some-lines-have" >how to use to latex read all content of a file concluding some lines have “%” <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 将 % 改为 # 和 _ 就好。</p>
+<div class="highlight-container" data-rel="Latex"><figure class="iseeu highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\newread</span><span class="keyword">\file</span></span><br><span class="line"><span class="keyword">\catcode</span>`<span class="keyword">\#</span>=11</span><br><span class="line"><span class="keyword">\catcode</span>`<span class="keyword">\_</span>=11</span><br><span class="line"><span class="keyword">\openin</span><span class="keyword">\file</span>=/flag2</span><br><span class="line"><span class="keyword">\read</span><span class="keyword">\file</span> to<span class="keyword">\fileline</span></span><br><span class="line"><span class="keyword">\fileline</span></span><br><span class="line"><span class="keyword">\closein</span><span class="keyword">\file</span></span><br></pre></td></tr></table></figure></div>
+
+<h2 id="能关-Revision-的-Wiki-都不纯洁"><a href="#能关-Revision-的-Wiki-都不纯洁" class="headerlink" title="能关 Revision 的 Wiki 都不纯洁"></a>能关 Revision 的 Wiki 都不纯洁</h2><p>在 <a class="link"   target="_blank" rel="noopener" href="https://forum.dokuwiki.org/d/18854-disabling-restoring-old-revision/5" >Disabling restoring old revision <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 中看到：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">When I disabled display of old revisions, restoring was still available through &#x27;Recent Changes&#x27; -&gt; &#x27;Show differences to current revisions&#x27;.</span><br></pre></td></tr></table></figure></div>
+
+<p>在 DokuWiki 官网进入 <code>Show differences to current revisions</code>，得到链接 <code>do=diff</code>，丢进题设 Wiki 中，得到 flag。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/hackergame-2022/Untitled%205.png"
+                     
+                ></p>
+<h2 id="简陋的-OJ"><a href="#简陋的-OJ" class="headerlink" title="简陋的 OJ"></a>简陋的 OJ</h2><h3 id="无法-AC-的题目"><a href="#无法-AC-的题目" class="headerlink" title="无法 AC 的题目"></a>无法 AC 的题目</h3><p>阅读代码，得知输出位于 <code>./data</code> 下的 <code>static.out</code> 和 <code>dynamic*.out</code> 中，其中 <code>dynamic*.out</code> 设了 0700 权限，被判程序以 <code>runner</code> 用户运行。</p>
+<p><code>static.out</code> 直接输出即可。</p>
+<div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    system(<span class="string">&quot;cat ./data/static.out&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>第二问，Linux Pwn 不熟练，再见。</p>
+<h2 id="嘿嘿，我的板板🤤"><a href="#嘿嘿，我的板板🤤" class="headerlink" title="嘿嘿，我的板板🤤"></a>嘿嘿，我的板板🤤</h2><p>使用 <a class="link"   target="_blank" rel="noopener" href="https://github.com/gerbv/gerbv" >gerbv <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 打开所有层，导出为 PDF，用 PDF 编辑器删除所有圈圈，得到 flag。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/hackergame-2022/Untitled%206.png"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/hackergame-2022/Untitled%207.png"
+                     
+                ></p>
+<h2 id="Flag-管理员"><a href="#Flag-管理员" class="headerlink" title="Flag 管理员"></a>Flag 管理员</h2><p>按钮乱跑不乖怎么办？让触摸屏来治治！</p>
+<p>什么？治了还不乖？</p>
+<p>使用 x32dbg 找到“超级管理员”的位置：</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/hackergame-2022/Untitled%208.png"
+                     
+                ></p>
+<p>将 4017FD 改为 401840，导出，运行，收工。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/hackergame-2022/Untitled%209.png"
+                     
+                ></p>
+<h2 id="高数早忘光了"><a href="#高数早忘光了" class="headerlink" title="高数早忘光了"></a>高数早忘光了</h2><p>瞎填一通，分数为 0。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/hackergame-2022/Untitled%2010.png"
+                     
+                ></p>
+<p><code>http://202.38.93.111:10056/share?result=MDox</code></p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="built_in">echo</span> MDox | <span class="built_in">base64</span> -d0:1&gt; <span class="built_in">echo</span> <span class="string">&quot;100:1&quot;</span> | base64MTAwOjEK</span><br></pre></td></tr></table></figure></div>
+
+<p>好，100 分。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/hackergame-2022/Untitled%2011.png"
+                     
+                ></p>
+<p>康康页面，页面中使用 <code>innerHTML</code> 展示分数。</p>
+<p>康康判题脚本，脚本把 flag 放在了 cookies 中。</p>
+<p>那就可以通过 JavaScript 在页面上做手脚，显示 cookies 就有 flag 了。</p>
+<p>鉴于 <a class="link"   target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Element/innerHTML" >MDN <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 提到浏览器不会直接执行 innerHTML 中的 script 标签，那就按里面的提示用 img 标签来注入。</p>
+<p>在本地测试的时候发现 chrome 在执行时会一直加载到超时，故加入 <code>document.stop()</code>。</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="built_in">echo</span> <span class="string">&quot;100:&lt;img src=&#x27;x&#x27; onerror=&#x27;document.write(\&quot;&lt;\!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p id=\\\&quot;greeting\\\&quot;&gt;\&quot;+document.cookie+\&quot;&lt;/p&gt;&lt;p id=\\\&quot;score\\\&quot;&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;\&quot;); window.stop() &#x27;&gt;&quot;</span> | <span class="built_in">base64</span></span><br><span class="line">MTAwOjxpbWcgc3JjPSd4JyBvbmVycm9yPSdkb2N1bWVudC53cml0ZSgiPCFET0NUWVBFIGh0bWw+PGh0bWw+PGhlYWQ+PC9oZWFkPjxib2R5PjxwIGlkPVwiZ3JlZXRpbmdcIj4iK2RvY3VtZW50LmNvb2tpZSsiPC9wPjxwIGlkPVwic2NvcmVcIj48L3A+PC9ib2R5PjwvaHRtbD4iKTsgd2luZG93LnN0b3AoKSAnPgo=</span><br></pre></td></tr></table></figure></div>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/hackergame-2022/Untitled%2012.png"
+                     
+                ></p>
+<h2 id="把-Wine-问青天"><a href="#把-Wine-问青天" class="headerlink" title="把 Wine 问青天"></a>把 Wine 问青天</h2><h3 id="flag1"><a href="#flag1" class="headerlink" title="flag1"></a>flag1</h3><p>写个 c 语言程序输出 <code>/flag1</code> 的内容即可。</p>
+<h3 id="flag2"><a href="#flag2" class="headerlink" title="flag2"></a>flag2</h3><p>由查询可知 wine 在命令行中可以使用 <code>start.exe /unix command</code> 命令运行 Linux 程序。遂 clone 下来 wine 的源码，configure 后每个子模块的 Makefile 都有了，然后打开 <code>programs/start/start.c</code>。</p>
+<p>由源码可知 wmain 的参数 argv 接收参数，因此写死 argv 即可。</p>
+<p>另外在实测中发现 <code>start.exe /unix</code> 不会输出 stdout 的内容，只有 stderr，故将 stdout 重定向至 stderr。</p>
+<div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> argc = <span class="number">5</span>;</span><br><span class="line">WCHAR *argv[<span class="number">5</span>] = &#123;<span class="string">L&quot;start.exe&quot;</span>, <span class="string">L&quot;/unix&quot;</span>, <span class="string">L&quot;/bin/sh&quot;</span>, <span class="string">L&quot;-c&quot;</span>, <span class="string">L&quot;/readflag 1&gt;&amp;2&quot;</span>&#125;;</span><br></pre></td></tr></table></figure></div>
+
+<p>在 start 目录下 <code>make</code> 获得 <code>start.exe</code>，提交获得 flag。</p>
+<p>另发现如果执行文件名和 wine 内置命令名称相同会执行内置命令，因此在本地测试的时候需要更改文件名。</p>
+<h2 id="歪，110-吗"><a href="#歪，110-吗" class="headerlink" title="歪，110 吗"></a>歪，110 吗</h2><p>五局三胜，前两局扔了也没关系。</p>
+<p>源码中的随机数种子为：</p>
+<p><code>srand((unsigned)time(0) + clock());</code></p>
+<p><code>clock</code> 函数为 CPU 时间，具体值视具体操作系统而定，这也是题目给出容器基于 <code>debian:11</code> 的原因。</p>
+<p>根据前两个值枚举 CPU 时间，在 <code>debian:11</code> 环境下获得结果。</p>
+<div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">double</span> <span class="title function_">rand01</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (<span class="type">double</span>)rand() / RAND_MAX;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">int</span> t = (<span class="type">unsigned</span>)time(<span class="number">0</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%u\n&quot;</span>, t);</span><br><span class="line"></span><br><span class="line">    <span class="type">char</span> find[<span class="number">8</span>];</span><br><span class="line">    <span class="type">char</span> find2[<span class="number">8</span>];</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, find);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, find);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, find2);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, find2);</span><br><span class="line">    <span class="type">char</span> target[<span class="number">20</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">unsigned</span> <span class="type">int</span> i = <span class="number">0</span>; i &lt;= <span class="number">20000</span>; i++)&#123;</span><br><span class="line">        srand(t + i);</span><br><span class="line">        <span class="type">int</span> M = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> N = <span class="number">400000</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; N; j++) &#123;</span><br><span class="line">            <span class="type">double</span> x = rand01();</span><br><span class="line">            <span class="type">double</span> y = rand01();</span><br><span class="line">            <span class="keyword">if</span> (x*x + y*y &lt; <span class="number">1</span>) M++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">double</span> pi = (<span class="type">double</span>)M / N * <span class="number">4</span>;</span><br><span class="line">        <span class="built_in">sprintf</span>(target, <span class="string">&quot;%1.5f&quot;</span>, pi);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%u %s\n&quot;</span>, t + i, target);</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">strcmp</span>(target, find) == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="type">int</span> M = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; N; j++) &#123;</span><br><span class="line">                <span class="type">double</span> x = rand01();</span><br><span class="line">                <span class="type">double</span> y = rand01();</span><br><span class="line">                <span class="keyword">if</span> (x*x + y*y &lt; <span class="number">1</span>) M++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="type">double</span> pi = (<span class="type">double</span>)M / N * <span class="number">4</span>;</span><br><span class="line">            <span class="built_in">sprintf</span>(target, <span class="string">&quot;%1.5f\0&quot;</span>, pi);</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot; -&gt; %u %s &quot;</span>, t + i, target);</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, <span class="built_in">strcmp</span>(target, find2));</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">strcmp</span>(target, find2) == <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">for</span>(<span class="type">int</span> k = <span class="number">0</span>; k &lt; <span class="number">3</span>; k++)&#123;</span><br><span class="line">                    <span class="type">int</span> M = <span class="number">0</span>;</span><br><span class="line">                    <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; N; j++) &#123;</span><br><span class="line">                        <span class="type">double</span> x = rand01();</span><br><span class="line">                        <span class="type">double</span> y = rand01();</span><br><span class="line">                        <span class="keyword">if</span> (x*x + y*y &lt; <span class="number">1</span>) M++;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="type">double</span> pi = (<span class="type">double</span>)M / N * <span class="number">4</span>;</span><br><span class="line">                    <span class="built_in">sprintf</span>(target, <span class="string">&quot;%1.5f\0&quot;</span>, pi);</span><br><span class="line">                    <span class="built_in">printf</span>(<span class="string">&quot; -&gt; -&gt; %u %s\n&quot;</span>, t + i, target);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="多几个字符会死吗"><a href="#多几个字符会死吗" class="headerlink" title="多几个字符会死吗"></a>多几个字符会死吗</h2><h3 id="HS384"><a href="#HS384" class="headerlink" title="HS384"></a>HS384</h3><blockquote>
+<p>题目看错，痛失 200 分。就差一点。</p>
+</blockquote>
+<p>有两种情况：<code>没有 e</code> 和 <code>有 e</code>。</p>
+<p>分别枚举即可。</p>
+<p>这个时候体现出一块好 CPU 的重要性。</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line">s = <span class="number">36</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">combinationSum</span>(<span class="params">self, candidates, target</span>):</span><br><span class="line">        result = []</span><br><span class="line">        candidates.sort()</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">dfs</span>(<span class="params">total, nums, index</span>):</span><br><span class="line">            <span class="keyword">if</span> total &gt; target: <span class="keyword">return</span></span><br><span class="line">            <span class="keyword">if</span> total == target:</span><br><span class="line">                <span class="keyword">if</span> nums <span class="keyword">not</span> <span class="keyword">in</span> result:</span><br><span class="line">                    result.append(nums)</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(index, <span class="built_in">len</span>(candidates)):</span><br><span class="line">                dfs(total+candidates[i], nums+[candidates[i]], i)</span><br><span class="line">        dfs(<span class="number">0</span>, [], <span class="number">0</span>)</span><br><span class="line">        r = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> result:</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">len</span>(i) == <span class="number">9</span>:</span><br><span class="line">                r.append(i)</span><br><span class="line">        <span class="keyword">return</span> r</span><br><span class="line"></span><br><span class="line">a = Solution().combinationSum(<span class="built_in">list</span>(<span class="built_in">range</span>(<span class="number">1</span>, s + <span class="number">1</span>)), s)</span><br><span class="line">json.dump(a, <span class="built_in">open</span>(<span class="string">&#x27;test.json&#x27;</span>, <span class="string">&#x27;w&#x27;</span>))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(a))</span><br></pre></td></tr></table></figure></div>
+
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> itertools</span><br><span class="line"><span class="keyword">from</span> hashlib <span class="keyword">import</span> sha384</span><br><span class="line"><span class="keyword">from</span> re <span class="keyword">import</span> I</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line">target = <span class="string">&#x27;ec18f9dbc4aba825c7d4f9c726db1cb0d0babf47fa170f33d53bc62074271866a4e4d1325dc27f644fdad&#x27;</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">permutation</span>(<span class="params">li</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">list</span>(itertools.permutations(li))</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;test.json&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    d = json.load(f) <span class="comment"># 1549</span></span><br><span class="line"><span class="keyword">for</span> iii, da <span class="keyword">in</span> <span class="built_in">enumerate</span>(d[<span class="built_in">int</span>(sys.argv[<span class="number">1</span>]):<span class="built_in">int</span>(sys.argv[<span class="number">2</span>])]):</span><br><span class="line">    p = permutation(da)</span><br><span class="line">    <span class="built_in">print</span>(iii)</span><br><span class="line">    <span class="keyword">for</span> iiii, data <span class="keyword">in</span> <span class="built_in">enumerate</span>(p):</span><br><span class="line">        string = <span class="string">&#x27;u&#x27;</span> * data[<span class="number">0</span>] + <span class="string">&#x27;s&#x27;</span> * data[<span class="number">1</span>] + <span class="string">&#x27;t&#x27;</span> *  data[<span class="number">2</span>] + <span class="string">&#x27;c&#x27;</span> * data[<span class="number">3</span>] + <span class="string">&#x27;e.&#x27;</span> +\</span><br><span class="line">            <span class="string">&#x27;e&#x27;</span> * data[<span class="number">4</span>] + <span class="string">&#x27;d&#x27;</span> * data[<span class="number">5</span>] + <span class="string">&#x27;u&#x27;</span> * data[<span class="number">6</span>] + <span class="string">&#x27;.&#x27;</span> +\</span><br><span class="line">                <span class="string">&#x27;c&#x27;</span> * data[<span class="number">7</span>] + <span class="string">&#x27;n&#x27;</span> * data[<span class="number">8</span>]</span><br><span class="line">        <span class="keyword">if</span> iiii % <span class="number">50000</span> == <span class="number">0</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;-&#x27;</span>, iiii, string)</span><br><span class="line">        result = sha384(string.encode()).hexdigest()</span><br><span class="line">        i = <span class="number">0</span></span><br><span class="line">        flag = <span class="literal">False</span></span><br><span class="line">        <span class="keyword">for</span> ii, x <span class="keyword">in</span> <span class="built_in">enumerate</span>(target):</span><br><span class="line">            res = result.find(x, i)</span><br><span class="line">            <span class="keyword">if</span> res != -<span class="number">1</span>:</span><br><span class="line">                i = res</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            <span class="keyword">if</span> ii == <span class="built_in">len</span>(target) - <span class="number">1</span>:</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&#x27;success&#x27;</span>, string, result)</span><br><span class="line">                exit()</span><br></pre></td></tr></table></figure></div>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/hackergame-2022/Untitled%2013.png"
+                     
+                ></p>
+<h2 id="需要一块好显卡"><a href="#需要一块好显卡" class="headerlink" title="需要一块好显卡"></a>需要一块好显卡</h2><p>把页面拉下来，去掉 <code>fragment-shader.js</code> 中的 <code>t5</code> 即可。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/hackergame-2022/Untitled%2014.png"
+                     
+                ></p>
+<p>说起来，这个页面在实验室的 3090 上的渲染帧率是 59.95 FPS。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/hackergame-2022/Untitled%2015.png"
+                     
+                ></p>
+<h2 id="人肉-SD-卡阅读器"><a href="#人肉-SD-卡阅读器" class="headerlink" title="人肉 SD 卡阅读器"></a>人肉 SD 卡阅读器</h2><h3 id="引导扇区"><a href="#引导扇区" class="headerlink" title="引导扇区"></a>引导扇区</h3><p>SPI 接口 4 条信号线：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1) SCLK：串行时钟，用来同步数据传输，由主机输出；</span><br><span class="line">2) MOSI：主机输出从机输入（Master Output Slaver Input）数据线；</span><br><span class="line">3) MISO：主机输入从机输出数据线；</span><br><span class="line">4) SS：片选线，低电平有效，由主机输出。</span><br></pre></td></tr></table></figure></div>
+
+<p>使用 PulseView 打开时序文件，波特率 24000000，获得 4 个信号，由观察可知最后一个信号为读信号，其中为 SD 卡中保存的内容。</p>
+<p>第一个 flag 在约 8353ns 处开始开始，起始比特为 <code>0110 0110 (f)</code>，根据第 2 个信号的时钟切割比特，直到 <code>0111 1101 (&#125;)</code> 为止，之后转换 ASCII 即可。</p>
+<h2 id="届かないファイル"><a href="#届かないファイル" class="headerlink" title="届かないファイル"></a>届かないファイル</h2><blockquote>
+<p>注意：这是非预期解。</p>
+</blockquote>
+<p>一行命令解决问题：</p>
+<p><code>rm /sbin/poweroff; exit</code></p>
+<p>然后就是 root shell，两个 flag 都可以直接 cat 出来。</p>
+<h3 id="怎么发现的"><a href="#怎么发现的" class="headerlink" title="怎么发现的"></a>怎么发现的</h3><p>进了容器逛了一圈，发现 <code>/etc/init.d/rcS</code> 涉及两个 flag 的权限设置，非常可疑。</p>
+<p>搞不定，恼羞成怒，<code>rm -rf /*</code> 后啥也没了，只剩下 shell 内置命令，遂 exit。</p>
+<p>发现 exit 不出去，报错：</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/hackergame-2022/Untitled%2016.png"
+                     
+                ></p>
+<p>意识到 <code>exit</code> 可以触发 <code>/etc/init.d/rcS</code>，接下来就是误打误撞的过程，我也忘了。</p>
+<p>flag1 给出了预期解的提示。</p>
+<h2 id="妮可量子物理世界有名"><a href="#妮可量子物理世界有名" class="headerlink" title="妮可量子物理世界有名"></a>妮可量子物理世界有名</h2><blockquote>
+<p>我知道出题人想分享学习 1.0 分的量子物理 的喜悦，我很理解他，我分享 2.9 分的《上海堡垒》 的时候也是这个心情。</p>
+</blockquote>
+<p>先上 YouTube 看了一些 BB84 算法的相关视频。这里不解释算法内容，反正不重要。</p>
+<h3 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h3><p>制备基底填 300 个 x，量子态填 300 个 0，测量基底里有几个 x 就填几个 0，进入第二关。</p>
+<h3 id="第二章"><a href="#第二章" class="headerlink" title="第二章"></a>第二章</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/hackergame-2022/Untitled%2017.png"
+                     
+                ></p>
+<p>奇怪的图片，我的评价是我看不懂。</p>
+<p>网上说是 qiskit 的量子电路图，我在 GitHub 上找到了<a class="link"   target="_blank" rel="noopener" href="https://github.com/atilsamancioglu/QX05-BernsteinVaziraniAlgorithmSimple" >这个例子 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>，感觉还挺好使，图例里全提到了，除了左边那个 <code>|&gt;0</code>。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/hackergame-2022/Untitled%2018.png"
+                     
+                ></p>
+<p>在 QuantumCircuit.draw 的代码中搜索 <code>|&gt;0</code> 找到这玩意的定义：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">initial_state (bool): Optional. Adds ``|0&gt;`` in the beginning of the wire. Default is False.</span><br></pre></td></tr></table></figure></div>
+
+<p>看来不是很重要。</p>
+<p>根据栗子复现图片即可。就是有点费眼睛。</p>
+<p>最后需要 measure 一次，否则没有结果。别问我为什么，问妮可学生，他们人均量子高手。</p>
+<p>建议使用 Jupyter Notebook。</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">%matplotlib inline</span><br><span class="line"><span class="keyword">from</span> qiskit <span class="keyword">import</span> *</span><br><span class="line">c = QuantumCircuit(<span class="number">129</span>,<span class="number">128</span>)</span><br><span class="line">c.h(<span class="built_in">list</span>(<span class="built_in">range</span>(<span class="number">0</span>, <span class="number">128</span>)))</span><br><span class="line">c.x(<span class="number">128</span>)</span><br><span class="line">c.h(<span class="number">128</span>)</span><br><span class="line"></span><br><span class="line">c.barrier()</span><br><span class="line">c.cx(<span class="number">0</span>, <span class="number">128</span>)</span><br><span class="line">c.x(<span class="number">1</span>)</span><br><span class="line">c.z(<span class="number">2</span>)</span><br><span class="line">c.x(<span class="number">26</span>)</span><br><span class="line">c.z(<span class="number">27</span>)</span><br><span class="line">c.x([<span class="number">31</span>, <span class="number">46</span>])</span><br><span class="line">c.z(<span class="number">47</span>)</span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;中间省略 114514 行&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line">c.cx(<span class="number">115</span>, <span class="number">128</span>)</span><br><span class="line">c.cx(<span class="number">117</span>, <span class="number">128</span>)</span><br><span class="line">c.cx(<span class="number">118</span>, <span class="number">128</span>)</span><br><span class="line">c.x(<span class="number">118</span>)</span><br><span class="line">c.cx(<span class="number">121</span>, <span class="number">128</span>)</span><br><span class="line">c.cx(<span class="number">122</span>, <span class="number">128</span>)</span><br><span class="line">c.cx(<span class="number">125</span>, <span class="number">128</span>)</span><br><span class="line">c.cx(<span class="number">126</span>, <span class="number">128</span>)</span><br><span class="line"></span><br><span class="line">c.barrier()</span><br><span class="line">c.h(<span class="built_in">list</span>(<span class="built_in">range</span>(<span class="number">0</span>, <span class="number">128</span>)))</span><br><span class="line"></span><br><span class="line">c.measure(<span class="built_in">list</span>(<span class="built_in">range</span>(<span class="number">0</span>, <span class="number">128</span>)),<span class="built_in">list</span>(<span class="built_in">range</span>(<span class="number">0</span>, <span class="number">128</span>)))</span><br><span class="line"></span><br><span class="line">c.draw(output=<span class="string">&#x27;mpl&#x27;</span>, initial_state=<span class="literal">True</span>, fold=-<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">simulator = Aer.get_backend(<span class="string">&#x27;qasm_simulator&#x27;</span>)</span><br><span class="line">result = execute(c, backend=simulator, shots=<span class="number">1000</span>).result()</span><br><span class="line">counts = result.get_counts()</span><br><span class="line"><span class="built_in">print</span>(counts)</span><br></pre></td></tr></table></figure></div>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/hackergame-2022/Untitled%2019.png"
+                     
+                ></p>
+<p>128位二进制转换为文本即为 flag。</p>
+<h2 id="我弟说不定喜欢玩"><a href="#我弟说不定喜欢玩" class="headerlink" title="我弟说不定喜欢玩"></a>我弟说不定喜欢玩</h2><h3 id="这么简单我闭眼都可以！"><a href="#这么简单我闭眼都可以！" class="headerlink" title="这么简单我闭眼都可以！"></a>这么简单我闭眼都可以！</h3><p>4 位二进制共 16 个数，一个个试。</p>
+<h3 id="大力当然出奇迹啦"><a href="#大力当然出奇迹啦" class="headerlink" title="大力当然出奇迹啦~"></a>大力当然出奇迹啦~</h3><p><del>16 位共 65536 个数，使 action_last 在一轮结束后将框内值改为下一个，然后一直点 L 即可（（</del></p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">action_last</span>(<span class="params">self</span>):</span><br><span class="line">  <span class="keyword">if</span> self.pc == <span class="built_in">len</span>(self.inbits):</span><br><span class="line">    self.pc = <span class="number">0</span></span><br><span class="line">    inbits = <span class="built_in">int</span>(<span class="string">&#x27;&#x27;</span>.join(<span class="built_in">map</span>(<span class="built_in">str</span>, self.inbits.copy())), <span class="number">2</span>)</span><br><span class="line">    inbits += <span class="number">1</span></span><br><span class="line">    self.inbits = <span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">int</span>, <span class="built_in">bin</span>(inbits)[<span class="number">2</span>:].zfill(<span class="built_in">len</span>(self.inbits))))</span><br><span class="line"></span><br><span class="line">  <span class="keyword">else</span>:</span><br><span class="line">    self.pc = <span class="built_in">len</span>(self.branches)</span><br></pre></td></tr></table></figure></div>
+
+<p>那自然是不太可能，手会废掉的。</p>
+<p>也没法全自动，texture 会死机。</p>
+<p>把 Board 类单独拎出来，慢慢轮，总会轮到的。</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Board</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        self.b = [[i*<span class="number">4</span>+j <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4</span>)] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4</span>)]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">_blkpos</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4</span>):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4</span>):</span><br><span class="line">                <span class="keyword">if</span> self.b[i][j] == <span class="number">15</span>:</span><br><span class="line">                    <span class="keyword">return</span> (i, j)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">reset</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4</span>):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4</span>):</span><br><span class="line">                self.b[i][j] = i*<span class="number">4</span> + j</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">move</span>(<span class="params">self, moves</span>):</span><br><span class="line">        <span class="keyword">for</span> m <span class="keyword">in</span> moves:</span><br><span class="line">            i, j = self._blkpos()</span><br><span class="line">            <span class="keyword">if</span> m == <span class="string">&#x27;L&#x27;</span>:</span><br><span class="line">                self.b[i][j] = self.b[i][j-<span class="number">1</span>]</span><br><span class="line">                self.b[i][j-<span class="number">1</span>] = <span class="number">15</span></span><br><span class="line">            <span class="keyword">elif</span> m == <span class="string">&#x27;R&#x27;</span>:</span><br><span class="line">                self.b[i][j] = self.b[i][j+<span class="number">1</span>]</span><br><span class="line">                self.b[i][j+<span class="number">1</span>] = <span class="number">15</span></span><br><span class="line">            <span class="keyword">elif</span> m == <span class="string">&#x27;U&#x27;</span>:</span><br><span class="line">                self.b[i][j] = self.b[i-<span class="number">1</span>][j]</span><br><span class="line">                self.b[i-<span class="number">1</span>][j] = <span class="number">15</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                self.b[i][j] = self.b[i+<span class="number">1</span>][j]</span><br><span class="line">                self.b[i+<span class="number">1</span>][j] = <span class="number">15</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__bool__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4</span>):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4</span>):</span><br><span class="line">                <span class="keyword">if</span> self.b[i][j] != i*<span class="number">4</span> + j:</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">board = Board()</span><br><span class="line">filename = <span class="string">&#x27;chals/b16_obf.json&#x27;</span></span><br><span class="line">inbits = [<span class="number">0</span>]*<span class="number">16</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(filename) <span class="keyword">as</span> f:</span><br><span class="line">    branches = json.load(f)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">watch_pc</span>(<span class="params">index</span>):</span><br><span class="line">    board.reset()</span><br><span class="line">    <span class="keyword">for</span> branch <span class="keyword">in</span> branches[:index]:</span><br><span class="line">        board.move(branch[<span class="number">1</span>] <span class="keyword">if</span> inbits[branch[<span class="number">0</span>]] <span class="keyword">else</span> branch[<span class="number">2</span>])</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">bool</span>(board)</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    inbits_ = <span class="built_in">int</span>(<span class="string">&#x27;&#x27;</span>.join(<span class="built_in">map</span>(<span class="built_in">str</span>, inbits.copy())), <span class="number">2</span>)</span><br><span class="line">    inbits_ += <span class="number">1</span></span><br><span class="line">    inbits = <span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">int</span>, <span class="built_in">bin</span>(inbits_)[<span class="number">2</span>:].zfill(<span class="number">16</span>)))</span><br><span class="line">    result = watch_pc(<span class="number">256</span>)</span><br><span class="line">    <span class="built_in">print</span>(result, <span class="string">&#x27;&#x27;</span>.join(<span class="built_in">map</span>(<span class="built_in">str</span>, inbits)))</span><br><span class="line">    <span class="keyword">assert</span> <span class="keyword">not</span> result</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="我们不一样～不一样～"><a href="#我们不一样～不一样～" class="headerlink" title="我们不一样～不一样～"></a>我们不一样～不一样～</h2><h3 id="有手就行"><a href="#有手就行" class="headerlink" title="有手就行"></a>有手就行</h3><p>按题目提示下载安装 bindiff，成功率还挺高，不成功就换个时间戳，确实是有手就行。</p>
+<h3 id="唯快不破"><a href="#唯快不破" class="headerlink" title="唯快不破"></a>唯快不破</h3><p>翻 GitHub 翻到个 <a class="link"   target="_blank" rel="noopener" href="https://github.com/nccgroup/idahunt" >idahunt <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>，可以全自动生成 .idb 或 .i64 文件。缺点是<strong>需要手动修改脚本中的 IDA 安装目录</strong>。</p>
+<p>bindiff.exe 有 CLI 界面，可以自动将目录中的 .idb 或 .i64 转换为 BinExport，并比较后输出文本比较日志。</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">PS C:\Program Files\BinDiff\bin&gt; .\bindiff.exe --help</span><br><span class="line">bindiff.exe: Find similarities and differences in disassembled code.</span><br><span class="line">Usage: bindiff.exe [OPTION] DIRECTORY</span><br><span class="line">    --output_format (comma-separated list of output formats: log (text file),</span><br><span class="line">      bin[ary] (BinDiff database loadable by the disassembler plugins));</span><br><span class="line">      default: bin;</span><br></pre></td></tr></table></figure></div>
+
+<p>然后正则一下比较日志，输出相同的地址，找不到的随便交一个。</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> subprocess</span><br><span class="line"><span class="keyword">import</span> shutil</span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">results = []</span><br><span class="line">targets = []</span><br><span class="line">token = <span class="string">&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">download</span>(<span class="params">url, path</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&#x27;Downloading <span class="subst">&#123;url&#125;</span> to <span class="subst">&#123;path&#125;</span>&#x27;</span>)</span><br><span class="line">    r = requests.get(url)</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(path, <span class="string">&#x27;wb&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        f.write(r.content)</span><br><span class="line"></span><br><span class="line">shutil.rmtree(<span class="string">&#x27;bin&#x27;</span>)</span><br><span class="line">shutil.rmtree(<span class="string">&#x27;result&#x27;</span>)</span><br><span class="line">os.mkdir(<span class="string">&#x27;bin&#x27;</span>)</span><br><span class="line">os.mkdir(<span class="string">&#x27;result&#x27;</span>)</span><br><span class="line">t = <span class="built_in">str</span>(<span class="built_in">int</span>(time.time()) - <span class="number">60</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;timestamp:&#x27;</span> + t)</span><br><span class="line"></span><br><span class="line">p = remote(<span class="string">&#x27;202.38.93.111&#x27;</span>, <span class="number">12400</span>)</span><br><span class="line">p.recvuntil(<span class="string">&#x27;Please input your token: &#x27;</span>)</span><br><span class="line">p.sendline(token)</span><br><span class="line">p.recvuntil(<span class="string">&#x27;Easy&#x27;</span>)</span><br><span class="line">p.sendline(<span class="string">&#x27;2&#x27;</span>)</span><br><span class="line">p.recvuntil(<span class="string">&#x27;(y/N)&#x27;</span>)</span><br><span class="line">p.sendline(<span class="string">&#x27;N&#x27;</span>)</span><br><span class="line">p.recvuntil(<span class="string">&#x27;timestamp:&#x27;</span>)</span><br><span class="line">p.sendline(t)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">100</span>):</span><br><span class="line">    data = p.recvuntil(<span class="string">&#x27;2nd binary:&#x27;</span>)</span><br><span class="line">    url = re.findall(<span class="string">&#x27;https?://\S+&#x27;</span>, data.decode())[<span class="number">0</span>]</span><br><span class="line">    download(url, <span class="string">f&#x27;bin/<span class="subst">&#123;i + <span class="number">1</span>&#125;</span>-1&#x27;</span>)</span><br><span class="line">    data = p.recvuntil(<span class="string">&#x27;There is a&#x27;</span>)</span><br><span class="line">    url = re.findall(<span class="string">&#x27;https?://\S+&#x27;</span>, data.decode())[<span class="number">0</span>]</span><br><span class="line">    download(url, <span class="string">f&#x27;bin/<span class="subst">&#123;i + <span class="number">1</span>&#125;</span>-2&#x27;</span>)</span><br><span class="line">    data = p.recvuntil(<span class="string">&#x27;in the first&#x27;</span>)</span><br><span class="line">    target = re.findall(<span class="string">r&#x27;0x[0-9A-Za-z]*&#x27;</span>, data.decode())[<span class="number">0</span>]</span><br><span class="line">    targets.append(target)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;target:&#x27;</span>, target)</span><br><span class="line">    p.recvuntil(<span class="string">&#x27;(in hex):&#x27;</span>)</span><br><span class="line">    p.sendline(<span class="string">&#x27;0&#x27;</span>)</span><br><span class="line"></span><br><span class="line">p = subprocess.Popen([<span class="string">&#x27;python&#x27;</span>, <span class="string">&#x27;.\\idahunt\\idahunt.py&#x27;</span>, <span class="string">&#x27;--inputdir&#x27;</span>, <span class="string">&#x27;.\\bin\\&#x27;</span>, <span class="string">&#x27;--analyse&#x27;</span>])</span><br><span class="line">return_code = p.wait()</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">100</span>):</span><br><span class="line">    os.mkdir(<span class="string">f&#x27;result/<span class="subst">&#123;i + <span class="number">1</span>&#125;</span>&#x27;</span>)</span><br><span class="line">    shutil.copyfile(<span class="string">f&#x27;bin/<span class="subst">&#123;i + <span class="number">1</span>&#125;</span>-1.i64&#x27;</span>, <span class="string">f&#x27;result/<span class="subst">&#123;i + <span class="number">1</span>&#125;</span>/<span class="subst">&#123;i + <span class="number">1</span>&#125;</span>-1.i64&#x27;</span>)</span><br><span class="line">    shutil.copyfile(<span class="string">f&#x27;bin/<span class="subst">&#123;i + <span class="number">1</span>&#125;</span>-2.i64&#x27;</span>, <span class="string">f&#x27;result/<span class="subst">&#123;i + <span class="number">1</span>&#125;</span>/<span class="subst">&#123;i + <span class="number">1</span>&#125;</span>-2.i64&#x27;</span>)</span><br><span class="line">    p = subprocess.Popen([<span class="string">&#x27;C:\\Program Files\\BinDiff\\bin\\bindiff.exe&#x27;</span>, <span class="string">f&#x27;.\\result\\<span class="subst">&#123;i + <span class="number">1</span>&#125;</span>&#x27;</span>, <span class="string">&#x27;--output_format&#x27;</span>, <span class="string">&#x27;log&#x27;</span>])</span><br><span class="line">    return_code = p.wait()</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">f&#x27;./result/<span class="subst">&#123;i + <span class="number">1</span>&#125;</span>/<span class="subst">&#123;i + <span class="number">1</span>&#125;</span>-1_vs_<span class="subst">&#123;i + <span class="number">1</span>&#125;</span>-2.results&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        data = f.read()</span><br><span class="line">    target = targets[i].split(<span class="string">&#x27;x&#x27;</span>)[<span class="number">1</span>]</span><br><span class="line">    addrs = re.findall(target.upper().zfill(<span class="number">8</span>) + <span class="string">r&#x27;\t[0-9A-Za-z]*\n&#x27;</span>, data)</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(addrs):</span><br><span class="line">        addr = <span class="string">&#x27;0x&#x27;</span> + addrs[<span class="number">0</span>][<span class="number">9</span>:<span class="number">17</span>].lower().lstrip(<span class="string">&#x27;0&#x27;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        addr = <span class="literal">None</span></span><br><span class="line">    <span class="built_in">print</span>(i + <span class="number">1</span>, targets[i], addr)</span><br><span class="line">    results.append(addr)</span><br><span class="line"></span><br><span class="line">p = remote(<span class="string">&#x27;202.38.93.111&#x27;</span>, <span class="number">12400</span>)</span><br><span class="line">p.recvuntil(<span class="string">&#x27;Please input your token: &#x27;</span>)</span><br><span class="line">p.sendline(token)</span><br><span class="line">p.recvuntil(<span class="string">&#x27;Easy&#x27;</span>)</span><br><span class="line">p.sendline(<span class="string">&#x27;2&#x27;</span>)</span><br><span class="line">p.recvuntil(<span class="string">&#x27;(y/N)&#x27;</span>)</span><br><span class="line">p.sendline(<span class="string">&#x27;N&#x27;</span>)</span><br><span class="line">p.recvuntil(<span class="string">&#x27;timestamp:&#x27;</span>)</span><br><span class="line">p.sendline(t)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">100</span>):</span><br><span class="line">    p.recvuntil(<span class="string">&#x27;(in hex):&#x27;</span>)</span><br><span class="line">    p.sendline(results[i] <span class="keyword">if</span> results[i] <span class="keyword">else</span> <span class="string">&#x27;0&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;sent:&#x27;</span>, i + <span class="number">1</span>, results[i] <span class="keyword">if</span> results[i] <span class="keyword">else</span> <span class="string">&#x27;0&#x27;</span>)</span><br><span class="line">data = p.recvall(timeout=<span class="number">5</span>).decode()</span><br><span class="line"><span class="built_in">print</span>(data)</span><br><span class="line"><span class="keyword">if</span> <span class="string">&#x27;flag&#x27;</span> <span class="keyword">in</span> data:</span><br><span class="line">    <span class="keyword">break</span></span><br></pre></td></tr></table></figure></div>
+
+<p>在第三问中不是很好使，算了。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>我在 Linux Pwn 题型面前感到了深深的无力，想了想还是多看点 Linux Kernel 相关书籍吧。</p>
+<p>math 不会，再见。</p>
+<p>如果我在折腾神经网络的时候顺便阅读一下 <code>torch.load</code> 的代码说不定能再多 250 分。</p>
+<p>傻傻炼丹壬真的炼，改梯度改不下去，晕（哼哼啊啊啊啊）</p>
+<p>今年 Hackergame 延续了往年的风格，难度梯度增加，大佬云集，<del>内卷严重</del>，值得我掏出整整七天熬夜为之折腰。</p>
+<p>感谢主催和出题人和驱动着我内卷的群友们。</p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>标题:</strong> Hackergame 2022 Writeup</li>
+        <li><strong>作者:</strong> Hanako</li>
+        <li><strong>创建于
+                :</strong> 2022-10-30 01:49:33</li>
+        
+            <li>
+                <strong>更新于
+                    :</strong> 2023-10-22 22:48:36
+            </li>
+        
+        <li>
+            <strong>链接:</strong> https://hanako.me/hg2022.html
+        </li>
+        <li>
+            <strong>
+                版权声明:
+            </strong>
+            
+            本文章采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a> 进行许可。
+            
+
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/CTF/">#CTF</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/">#信息安全</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/Hackergame/">#Hackergame</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                        rel="prev"
+                        href="/parallels_rosetta.html"
+                        >
+                            <span class="left arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">在 Parallels 上运行 Rosetta</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+            </div>
+        
+
+
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">此页目录</div>
+        <div class="page-title">Hackergame 2022 Writeup</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AD%BE%E5%88%B0"><span class="nav-text">签到</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%96%B5%E5%92%AA%E9%97%AE%E7%AD%94%E7%8C%AB"><span class="nav-text">喵咪问答猫</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%AC%E8%AF%9D%EF%BC%8C%E8%AE%A9%E6%88%91%E7%9C%8B%E7%9C%8B%EF%BC%81"><span class="nav-text">听话，让我看看！</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#VS-Code-%E9%87%8C%E7%9A%84-flag"><span class="nav-text">VS Code 里的 flag</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Rclone-%E9%87%8C%E7%9A%84-flag"><span class="nav-text">Rclone 里的 flag</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Python-4-0"><span class="nav-text">Python 4.0</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lycoris-Recoil-%E8%B6%B3%E7%AB%8B%E8%84%91%E5%AD%90%E6%8A%BD%E9%A3%8E%E7%89%88"><span class="nav-text">Lycoris Recoil 足立脑子抽风版</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E7%9B%92"><span class="nav-text">开盒</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E9%A2%98"><span class="nav-text">第一题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E9%A2%98"><span class="nav-text">第二题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E5%AD%97%E7%88%86%E7%A0%B4"><span class="nav-text">数字爆破</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%99%E4%B9%88%E5%86%99%E8%AE%BA%E6%96%87%E4%BC%9A%E8%A2%AB%E5%AD%A6%E6%9C%AF%E7%95%8C%E6%8B%89%E9%BB%91%E7%9A%84%E7%BD%A2"><span class="nav-text">这么写论文会被学术界拉黑的罢</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%AF%E6%96%87%E6%9C%AC"><span class="nav-text">纯文本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6%E6%B7%B7%E5%85%A5"><span class="nav-text">特殊字符混入</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%BD%E5%85%B3-Revision-%E7%9A%84-Wiki-%E9%83%BD%E4%B8%8D%E7%BA%AF%E6%B4%81"><span class="nav-text">能关 Revision 的 Wiki 都不纯洁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E9%99%8B%E7%9A%84-OJ"><span class="nav-text">简陋的 OJ</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E6%B3%95-AC-%E7%9A%84%E9%A2%98%E7%9B%AE"><span class="nav-text">无法 AC 的题目</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%98%BF%E5%98%BF%EF%BC%8C%E6%88%91%E7%9A%84%E6%9D%BF%E6%9D%BF%F0%9F%A4%A4"><span class="nav-text">嘿嘿，我的板板🤤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Flag-%E7%AE%A1%E7%90%86%E5%91%98"><span class="nav-text">Flag 管理员</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%AB%98%E6%95%B0%E6%97%A9%E5%BF%98%E5%85%89%E4%BA%86"><span class="nav-text">高数早忘光了</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%8A-Wine-%E9%97%AE%E9%9D%92%E5%A4%A9"><span class="nav-text">把 Wine 问青天</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#flag1"><span class="nav-text">flag1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flag2"><span class="nav-text">flag2</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%AA%EF%BC%8C110-%E5%90%97"><span class="nav-text">歪，110 吗</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E5%87%A0%E4%B8%AA%E5%AD%97%E7%AC%A6%E4%BC%9A%E6%AD%BB%E5%90%97"><span class="nav-text">多几个字符会死吗</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HS384"><span class="nav-text">HS384</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9C%80%E8%A6%81%E4%B8%80%E5%9D%97%E5%A5%BD%E6%98%BE%E5%8D%A1"><span class="nav-text">需要一块好显卡</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%BA%E8%82%89-SD-%E5%8D%A1%E9%98%85%E8%AF%BB%E5%99%A8"><span class="nav-text">人肉 SD 卡阅读器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E5%AF%BC%E6%89%87%E5%8C%BA"><span class="nav-text">引导扇区</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B1%8A%E3%81%8B%E3%81%AA%E3%81%84%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB"><span class="nav-text">届かないファイル</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%8E%E4%B9%88%E5%8F%91%E7%8E%B0%E7%9A%84"><span class="nav-text">怎么发现的</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%AE%E5%8F%AF%E9%87%8F%E5%AD%90%E7%89%A9%E7%90%86%E4%B8%96%E7%95%8C%E6%9C%89%E5%90%8D"><span class="nav-text">妮可量子物理世界有名</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0"><span class="nav-text">第一章</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0"><span class="nav-text">第二章</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%91%E5%BC%9F%E8%AF%B4%E4%B8%8D%E5%AE%9A%E5%96%9C%E6%AC%A2%E7%8E%A9"><span class="nav-text">我弟说不定喜欢玩</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%99%E4%B9%88%E7%AE%80%E5%8D%95%E6%88%91%E9%97%AD%E7%9C%BC%E9%83%BD%E5%8F%AF%E4%BB%A5%EF%BC%81"><span class="nav-text">这么简单我闭眼都可以！</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%A7%E5%8A%9B%E5%BD%93%E7%84%B6%E5%87%BA%E5%A5%87%E8%BF%B9%E5%95%A6"><span class="nav-text">大力当然出奇迹啦~</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%91%E4%BB%AC%E4%B8%8D%E4%B8%80%E6%A0%B7%EF%BD%9E%E4%B8%8D%E4%B8%80%E6%A0%B7%EF%BD%9E"><span class="nav-text">我们不一样～不一样～</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%89%E6%89%8B%E5%B0%B1%E8%A1%8C"><span class="nav-text">有手就行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%94%AF%E5%BF%AB%E4%B8%8D%E7%A0%B4"><span class="nav-text">唯快不破</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-text">总结</span></a></li></ol>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2023&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">Hanako</a>
+        </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a> 驱动</span>
+            <span class="text-sm lg:block">主题&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.5.0</a></span>
+        </div>
+        
+        
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+</main>
+
+
+    
+<script src="/js/libs/Swup.min.js"></script>
+
+<script src="/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+
+
+
+<script src="/js/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/utils.js" type="module"></script>
+
+<script src="/js/main.js" type="module"></script>
+
+<script src="/js/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/layouts/categoryList.js" type="module"></script>
+
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js" type="module"></script>
+
+
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+<div class="post-scripts" data-swup-reload-script>
+    
+        
+<script src="/js/libs/anime.min.js"></script>
+
+        
+<script src="/js/tools/tocToggle.js" type="module"></script>
+
+<script src="/js/layouts/toc.js" type="module"></script>
+
+<script src="/js/plugins/tabs.js" type="module"></script>
+
+    
+</div>
+
+
+</body>
+</html>

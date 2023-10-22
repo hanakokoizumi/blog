@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hanako Blog">
+    
+    <meta name="author" content="Hanako">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://hanako.me/parallels_rosetta.html"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="你果在今年 6 月发布了 macOS Ventura，其中一个亮点功能是支持在 Linux 虚拟机中运行 Rosetta。 得知这个消息的时候，我心血来潮地升了个 Beta 版来体验。Bug 真 TM 多，不过我是从 Beta 7 开始的，应该没 Beta 1 惨。~~下次我绝对不升预览版~~ 根据 Running Intel Binaries in Linux VMs with Rosetta">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在 Parallels 上运行 Rosetta">
+<meta property="og:url" content="https://hanako.me/parallels_rosetta.html">
+<meta property="og:site_name" content="Hanako Blog">
+<meta property="og:description" content="你果在今年 6 月发布了 macOS Ventura，其中一个亮点功能是支持在 Linux 虚拟机中运行 Rosetta。 得知这个消息的时候，我心血来潮地升了个 Beta 版来体验。Bug 真 TM 多，不过我是从 Beta 7 开始的，应该没 Beta 1 惨。~~下次我绝对不升预览版~~ 根据 Running Intel Binaries in Linux VMs with Rosetta">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hanako.me/img/parallels-rosetta/image-20221101190318861.png">
+<meta property="og:image" content="https://hanako.me/img/parallels-rosetta/image-20221101190543414.png">
+<meta property="og:image" content="https://hanako.me/img/parallels-rosetta/image-20221101190849291.png">
+<meta property="og:image" content="https://hanako.me/img/parallels-rosetta/image-20221101191659940.png">
+<meta property="og:image" content="https://hanako.me/img/parallels-rosetta/image-20221101192559210.png">
+<meta property="og:image" content="https://hanako.me/img/parallels-rosetta/image-20221101193304902.png">
+<meta property="og:image" content="https://hanako.me/img/parallels-rosetta/image-20221101194008837.png">
+<meta property="og:image" content="https://hanako.me/img/parallels-rosetta/image-20221101194647582.png">
+<meta property="article:published_time" content="2022-11-02T00:00:00.000Z">
+<meta property="article:modified_time" content="2023-10-22T14:48:04.688Z">
+<meta property="article:author" content="Hanako">
+<meta property="article:tag" content="Parallels">
+<meta property="article:tag" content="Rosetta">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hanako.me/img/parallels-rosetta/image-20221101190318861.png">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/null" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/null">
+    <meta name="theme-color" content="#60af71">
+    <link rel="shortcut icon" href="/null">
+    <!--- Page Info-->
+    
+    <title>
+        
+            在 Parallels 上运行 Rosetta -
+        
+        Hanako Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/assets/build/styles.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/fonts.css">
+
+    
+<link rel="stylesheet" href="/fonts/Satoshi/satoshi.css">
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    <!--- Inject Part-->
+    
+    <script id="hexo-configurations">
+    window.config = {"hostname":"hanako.me","root":"/","language":"zh-CN"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":false,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":true,"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#60af71","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js","enable":false,"site_pv":false,"site_uv":false,"post_pv":false},"single_page":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":false,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"Theme Redefine","subtitle":{"text":[],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":true},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.5.0","navbar":{"auto_hide":false,"color":{"left":"#60af71","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Status":{"path":"https://stats.uptimerobot.com/zyowMhGqLL","icon":"fa-regular fa-chart-bar"},"About":{"icon":"fa-regular fa-user","submenus":{"Me":"/about","Github":"https://github.com/hanakokoizumi","Blog":"https://hanako.me","Friends":"/friends"}}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"links":{"Archives":{"path":"/archives","icon":"fa-regular fa-archive"}}},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
+    window.lang_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="swup-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container">
+    
+    <div class="navbar-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                Hanako Blog
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-house"></i>
+                                        
+                                        首页
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/archives"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-archive"></i>
+                                        
+                                        归档
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    target="_blank" rel="noopener" href="https://stats.uptimerobot.com/zyowMhGqLL"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-chart-bar"></i>
+                                        
+                                        状态
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown" 
+                                    href="#" onClick="return false;">
+                                    
+                                        
+                                            <i class="fa-regular fa-user"></i>
+                                        
+                                        关于&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                    
+                                        <li>
+                                        <a href="/about">ME
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a target="_blank" rel="noopener" href="https://github.com/hanakokoizumi">GITHUB
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a href="https://hanako.me">BLOG
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a href="/friends">友情链接
+                                        </a>
+                                        </li>
+                                    
+                                    </ul>
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="navbar-drawer w-full absolute top-0 left-0 bg-background-color">
+        <ul class="drawer-navbar-list flex flex-col justify-start items-center">
+            
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex justify-center items-center">
+                        <a class="rounded-3xl py-1.5 px-5 hover:border hover:!text-primary active:!text-primary group " 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-regular fa-house"></i>
+                                
+                                首页
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex justify-center items-center">
+                        <a class="rounded-3xl py-1.5 px-5 hover:border hover:!text-primary active:!text-primary group " 
+                        href="/archives"  >
+                             
+                                
+                                    <i class="fa-regular fa-archive"></i>
+                                
+                                归档
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex justify-center items-center">
+                        <a class="rounded-3xl py-1.5 px-5 hover:border hover:!text-primary active:!text-primary group " 
+                        target="_blank" rel="noopener" href="https://stats.uptimerobot.com/zyowMhGqLL"  >
+                             
+                                
+                                    <i class="fa-regular fa-chart-bar"></i>
+                                
+                                状态
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex justify-center items-center">
+                        <a class="rounded-3xl py-1.5 px-5 hover:border hover:!text-primary active:!text-primary group has-dropdown" 
+                        href="#" onClick="return false;">
+                            
+                                
+                                    <i class="fa-regular fa-user"></i>
+                                
+                                关于&nbsp;<i class="group-hover:rotate-180 transition-transform fa-solid fa-chevron-down"></i>
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                              
+                        
+                            <li class="drawer-navbar-item text-base flex justify-center items-center hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                <a class="py-0.5" href="/about">ME</a>
+                            </li>
+                        
+                            <li class="drawer-navbar-item text-base flex justify-center items-center hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                <a class="py-0.5" target="_blank" rel="noopener" href="https://github.com/hanakokoizumi">GITHUB</a>
+                            </li>
+                        
+                            <li class="drawer-navbar-item text-base flex justify-center items-center hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                <a class="py-0.5" href="https://hanako.me">BLOG</a>
+                            </li>
+                        
+                            <li class="drawer-navbar-item text-base flex justify-center items-center hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                <a class="py-0.5" href="/friends">友情链接</a>
+                            </li>
+                        
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            
+                
+                
+                <img src="/img/parallels-rosetta/image-20221101191659940.png" alt="在 Parallels 上运行 Rosetta" class="max-w-none"/>
+                
+                <h1 class="article-title-cover">在 Parallels 上运行 Rosetta</h1>
+            
+            </div>
+            
+                    
+        
+        
+            <div class="article-header flex flex-row gap-2 items-center">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="/img/hnk.jpg">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">Hanako</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2022-11-02 08:00</span>
+        <span class="mobile">2022-11-02 08:00</span>
+        <span class="hover-info">创建</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2023-10-22 22:48:04</span>
+            <span class="mobile">2023-10-22 22:48:04</span>
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/%E9%9A%8F%E4%BE%BF%E6%8A%98%E8%85%BE/">随便折腾</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Parallels/">Parallels</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Rosetta/">Rosetta</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body">
+            <p>你果在今年 6 月发布了 macOS Ventura，其中一个亮点功能是支持在 Linux 虚拟机中运行 Rosetta。</p>
+<p>得知这个消息的时候，我心血来潮地升了个 Beta 版来体验。Bug 真 TM 多，不过我是从 Beta 7 开始的，应该没 Beta 1 惨。<del>下次我绝对不升预览版</del></p>
+<p>根据 <a class="link"   target="_blank" rel="noopener" href="https://developer.apple.com/documentation/virtualization/running_intel_binaries_in_linux_vms_with_rosetta" >Running Intel Binaries in Linux VMs with Rosetta <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 的描述，我使用当时实验性支持 Rosetta 的 UTM 4.0 Beta，在 Apple Virtualization.framework（下文简称 VF）下安装了 Arch Linux ARM，根据 Apple Developer 的文档挂载了 Rosetta VirtioFS，运行了 update-binfmts。</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> /tmp/mountpoint</span><br><span class="line">sudo mount -t virtiofs rosetta /tmp/mountpoint</span><br><span class="line">sudo /usr/sbin/update-binfmts --install rosetta /tmp/mountpoint/rosetta \</span><br><span class="line">    --magic <span class="string">&quot;\x7fELF\x02\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x3e\x00&quot;</span> \</span><br><span class="line">    --mask <span class="string">&quot;\xff\xff\xff\xff\xff\xfe\xfe\x00\xff\xff\xff\xff\xff\xff\xff\xff\xfe\xff\xff\xff&quot;</span> \</span><br><span class="line">    --credentials <span class="built_in">yes</span> --preserve no --fix-binary <span class="built_in">yes</span></span><br></pre></td></tr></table></figure></div>
+
+<p>update-binfmts 的参数意思不用多说。</p>
+<p>不过 aarch64 环境下大量缺少 x86-64 的 .so 动态链接库，pacman 的多架构软件包管理又非常感人，在随便测试了一个在某 x86 服务器上静态编译的 Hello World 后，不得已换成了 Debian 11<del>（Ubuntu 爬）</del>，dpkg 可以方便地管理多个处理器架构的软件包：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dpkg --add-architecture amd64</span><br><span class="line">dpkg --add-architecture i386</span><br></pre></td></tr></table></figure></div>
+
+<p>之后 update 一遍，随便装个 amd64 的包：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install libx11-dev:amd64</span><br></pre></td></tr></table></figure></div>
+
+<p>ld.so.conf 会被自动配置并运行 ldconfig。</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="built_in">ls</span> /etc/ld.so.conf.d</span><br><span class="line">aarch64-linux-gnu.conf           libc.conf</span><br><span class="line">arm-linux-gnueabihf.conf         x86_64-linux-gnu.conf</span><br><span class="line">fakeroot-aarch64-linux-gnu.conf</span><br><span class="line"></span><br><span class="line">&gt; <span class="built_in">cat</span> /etc/ld.so.conf.d/x86_64-linux-gnu.conf</span><br><span class="line"><span class="comment"># Multiarch support</span></span><br><span class="line">/usr/local/lib/x86_64-linux-gnu</span><br><span class="line">/lib/x86_64-linux-gnu</span><br><span class="line">/usr/lib/x86_64-linux-gnu</span><br></pre></td></tr></table></figure></div>
+
+<p>Google 没有提供 ARM 版的 Chrome。Chromium 在 Rosetta 下闪退。Firefox 运行良好，虽然肯定比 ARM64 原生版慢。</p>
+<p>能够支持 GUI 应用程序，这是我没有想到的。</p>
+<h2 id="切换到-Parallels-Desktop"><a href="#切换到-Parallels-Desktop" class="headerlink" title="切换到 Parallels Desktop"></a>切换到 Parallels Desktop</h2><p>截至本文撰写时，UTM 最新版是 v4.0.9。</p>
+<p>虽然我不知道现在 UTM 对 VF 的支持怎么样，但是当时 VF 下不能自动变换分辨率（屏幕分辨率在设定中是写死的，似乎是 VF 的缺陷）、不能使用剪贴板互通、不能使用触控板滚屏（后面两个应该是能用了），这些功能虽然在基于 Hypervisor.framework（下文简称 HVF）的 QEMU 上能够使用，但使用体验也是比较感人的。</p>
+<p>lima 使用的是基于 HVF 的 QEMU，不能魔改代码启用 Rosetta。</p>
+<p>买了正版 Parallels Desktop 当然是要物尽其用了对吧（而且我当时也有退回 macOS 12 的打算）</p>
+<p>RosettaLinux 在 macOS 下的位置是 <code>/Library/Apple/usr/libexec/oah/RosettaLinux</code>。</p>
+<p>把 RosettaLinux 执行文件 copy 出来，挂载到 Parallels Desktop 的 Debian 11 上，毫无意外地报错了。</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rosetta error: Rosetta is only intended to run on Apple Silicon with a macOS host using Virtualization.framework with Rosetta mode enabled</span><br><span class="line">追踪与中断点陷阱</span><br></pre></td></tr></table></figure></div>
+
+<p>都是硬件虚拟化，虚拟处理器都是一样的，魔改一番或许有戏。</p>
+<h2 id="魔改工程"><a href="#魔改工程" class="headerlink" title="魔改工程"></a>魔改工程</h2><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; file rosetta</span><br><span class="line">rosetta: ELF 64-bit LSB executable, ARM aarch64, version 1 (SYSV), statically linked, BuildID[xxHash]=be14a432992ecdeb, stripped</span><br></pre></td></tr></table></figure></div>
+
+<p>把 rosetta elf 丢进 IDA 溜达溜达。<del>请无视这个 Windows，都怪某 Hackergame</del></p>
+<p>ELF 类型选 ARM64 小端序。</p>
+<p>字符串全文搜索上述的 <code>Rosetta is only</code> ，可见有两种情况会跳转到该错误。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/parallels-rosetta/image-20221101190318861.png"
+                     
+                ></p>
+<h3 id="情况-1"><a href="#情况-1" class="headerlink" title="情况 1"></a>情况 1</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/parallels-rosetta/image-20221101190543414.png"
+                     
+                ></p>
+<p>这应该是 Apple 在故意整活。</p>
+<h3 id="情况-2"><a href="#情况-2" class="headerlink" title="情况 2"></a>情况 2</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/parallels-rosetta/image-20221101190849291.png"
+                     
+                ></p>
+<p>在进行某种计算。</p>
+<p>顺便学习了一下 ARM 指令集。</p>
+<p>部分涉及跳转的 ARM 指令如下：</p>
+<blockquote>
+<p>TBZ: test branch zero. 测试位为0，则跳转。 TBNZ: test branch no zero. 测试位不为0，则跳转。 CBNZ: 当Xt寄存器的值(64位)非零，那么执行跳转，地址是当前PC+label的偏移地址。 CBZ: 当Xt寄存器的值(64位)是零，那么执行跳转，地址是当前PC+label的偏移地址。</p>
+</blockquote>
+<p>将 TBNZ 和 CBNZ 分别变更为 TBZ 和 CBZ，导出到文件。</p>
+<blockquote>
+<p>IDA 不自带除 x86 外的平台的汇编器，尝试直接编辑汇编时会报告以下错误：</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/parallels-rosetta/image-20221101191659940.png"
+                     
+                ></p>
+<p>可以安装 <a class="link"   target="_blank" rel="noopener" href="https://www.keystone-engine.org/keypatch/" >Keypatch <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 后使用 Keypatch——Patcher 命令，也可以在 Hex View 中直接变更十六进制文本。</p>
+<p>直接变更十六进制文本时，记得是小端序。</p>
+</blockquote>
+<p>直接运行，看起来不报错了。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/parallels-rosetta/image-20221101192559210.png"
+                     
+                ></p>
+<p>尝试运行上述的静态链接程序，没有异常。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/parallels-rosetta/image-20221101193304902.png"
+                     
+                ></p>
+<p><del>这不就成了吗</del></p>
+<p>复制到 &#x2F;bin 目录，安装：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install update-binfmts</span><br><span class="line">sudo /usr/sbin/update-binfmts --install rosetta /bin/rosetta \</span><br><span class="line">    --magic <span class="string">&quot;\x7fELF\x02\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x3e\x00&quot;</span> \</span><br><span class="line">    --mask <span class="string">&quot;\xff\xff\xff\xff\xff\xfe\xfe\x00\xff\xff\xff\xff\xff\xff\xff\xff\xfe\xff\xff\xff&quot;</span> \</span><br><span class="line">    --credentials <span class="built_in">yes</span> --preserve no --fix-binary <span class="built_in">yes</span></span><br></pre></td></tr></table></figure></div>
+
+<p>直接运行，正常：</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/parallels-rosetta/image-20221101194008837.png"
+                     
+                ></p>
+<p>安装 amd64 相关链接库：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg --add-architecture amd64</span><br><span class="line">sudo apt install libc6:amd64</span><br><span class="line">sudo apt install libx11-6:amd64</span><br></pre></td></tr></table></figure></div>
+
+<p>安装 Firefox：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt remove firefox-esr</span><br><span class="line">sudo apt autoremove</span><br><span class="line">sudo apt install firefox-esr:amd64</span><br></pre></td></tr></table></figure></div>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/parallels-rosetta/image-20221101194647582.png"
+                     
+                ></p>
+<p><del>甚至能播放视频，音频正常播放，看来非常稳</del></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Apple 这墙跟纸糊的一样。</p>
+<p>不过我在试图运行于 Asahi Linux 时碰壁了，似乎是 Asahi Linux 默认的 16K Kernel 没法用，4K IOMMU 补丁无效。</p>
+<p>反正 Asahi Linux 的 GPU 驱动还没公布，短时间内不会用上了就不管了。</p>
+<p><del>其它 ARM 设备要用的话估计有点困难，Apple Silicon 的内存一致性模型有为 Rosetta 专门设计，就算能跑那也会比 Apple Silicon 效率要低。</del></p>
+<blockquote>
+<p>经群友提醒，非 VF 虚拟机下无法调整控制 TSO 序的寄存器。需要一种在 macOS 下调整 TSO 序的方法。</p>
+</blockquote>
+<p>改天装个 Vivado 看看会不会比 Windows 版的快。</p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>标题:</strong> 在 Parallels 上运行 Rosetta</li>
+        <li><strong>作者:</strong> Hanako</li>
+        <li><strong>创建于
+                :</strong> 2022-11-02 08:00:00</li>
+        
+            <li>
+                <strong>更新于
+                    :</strong> 2023-10-22 22:48:04
+            </li>
+        
+        <li>
+            <strong>链接:</strong> https://hanako.me/parallels_rosetta.html
+        </li>
+        <li>
+            <strong>
+                版权声明:
+            </strong>
+            
+            本文章采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a> 进行许可。
+            
+
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/Parallels/">#Parallels</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/Rosetta/">#Rosetta</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                        rel="prev"
+                        href="/gpu_passthrough.html"
+                        >
+                            <span class="left arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">Ivy Bridge 平台 PVE 直通 RX550 显卡</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                        rel="next"
+                        href="/hg2022.html"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">Hackergame 2022 Writeup</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">此页目录</div>
+        <div class="page-title">在 Parallels 上运行 Rosetta</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%87%E6%8D%A2%E5%88%B0-Parallels-Desktop"><span class="nav-text">切换到 Parallels Desktop</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%AD%94%E6%94%B9%E5%B7%A5%E7%A8%8B"><span class="nav-text">魔改工程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%83%85%E5%86%B5-1"><span class="nav-text">情况 1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%83%85%E5%86%B5-2"><span class="nav-text">情况 2</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-text">总结</span></a></li></ol>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2023&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">Hanako</a>
+        </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a> 驱动</span>
+            <span class="text-sm lg:block">主题&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.5.0</a></span>
+        </div>
+        
+        
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+</main>
+
+
+    
+<script src="/js/libs/Swup.min.js"></script>
+
+<script src="/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+
+
+
+<script src="/js/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/utils.js" type="module"></script>
+
+<script src="/js/main.js" type="module"></script>
+
+<script src="/js/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/layouts/categoryList.js" type="module"></script>
+
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js" type="module"></script>
+
+
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+<div class="post-scripts" data-swup-reload-script>
+    
+        
+<script src="/js/libs/anime.min.js"></script>
+
+        
+<script src="/js/tools/tocToggle.js" type="module"></script>
+
+<script src="/js/layouts/toc.js" type="module"></script>
+
+<script src="/js/plugins/tabs.js" type="module"></script>
+
+    
+</div>
+
+
+</body>
+</html>

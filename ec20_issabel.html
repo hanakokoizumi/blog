@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hanako Blog">
+    
+    <meta name="author" content="Hanako">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://hanako.me/ec20_issabel.html"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="作为一个卡粉+赛博世界游民（不是），拥有一堆各国手机号码是基本的素养，这就导致我手里的各种卡变得非常的多，同时管理 114514 个号码就成了难题。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="EC20 模块+Issabel 实现网络电话">
+<meta property="og:url" content="https://hanako.me/ec20_issabel.html">
+<meta property="og:site_name" content="Hanako Blog">
+<meta property="og:description" content="作为一个卡粉+赛博世界游民（不是），拥有一堆各国手机号码是基本的素养，这就导致我手里的各种卡变得非常的多，同时管理 114514 个号码就成了难题。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hanako.me/img/ec20-issabel/Untitled.png">
+<meta property="og:image" content="https://hanako.me/img/ec20-issabel/Untitled%201.png">
+<meta property="og:image" content="https://hanako.me/img/ec20-issabel/Untitled%202.png">
+<meta property="og:image" content="https://hanako.me/img/ec20-issabel/Untitled%203.png">
+<meta property="og:image" content="https://hanako.me/img/ec20-issabel/Untitled%204.png">
+<meta property="og:image" content="https://hanako.me/img/ec20-issabel/Untitled%205.png">
+<meta property="article:published_time" content="2023-10-21T17:49:33.000Z">
+<meta property="article:modified_time" content="2023-10-22T14:49:18.760Z">
+<meta property="article:author" content="Hanako">
+<meta property="article:tag" content="Issabel">
+<meta property="article:tag" content="VoIP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hanako.me/img/ec20-issabel/Untitled.png">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/null" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/null">
+    <meta name="theme-color" content="#60af71">
+    <link rel="shortcut icon" href="/null">
+    <!--- Page Info-->
+    
+    <title>
+        
+            EC20 模块+Issabel 实现网络电话 -
+        
+        Hanako Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/assets/build/styles.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/fonts.css">
+
+    
+<link rel="stylesheet" href="/fonts/Satoshi/satoshi.css">
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    <!--- Inject Part-->
+    
+    <script id="hexo-configurations">
+    window.config = {"hostname":"hanako.me","root":"/","language":"zh-CN"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":false,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":true,"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#60af71","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js","enable":false,"site_pv":false,"site_uv":false,"post_pv":false},"single_page":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":false,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"Theme Redefine","subtitle":{"text":[],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":true},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.5.0","navbar":{"auto_hide":false,"color":{"left":"#60af71","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Status":{"path":"https://stats.uptimerobot.com/zyowMhGqLL","icon":"fa-regular fa-chart-bar"},"About":{"icon":"fa-regular fa-user","submenus":{"Me":"/about","Github":"https://github.com/hanakokoizumi","Blog":"https://hanako.me","Friends":"/friends"}}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"links":{"Archives":{"path":"/archives","icon":"fa-regular fa-archive"}}},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
+    window.lang_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="swup-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container">
+    
+    <div class="navbar-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                Hanako Blog
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-house"></i>
+                                        
+                                        首页
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/archives"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-archive"></i>
+                                        
+                                        归档
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    target="_blank" rel="noopener" href="https://stats.uptimerobot.com/zyowMhGqLL"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-chart-bar"></i>
+                                        
+                                        状态
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown" 
+                                    href="#" onClick="return false;">
+                                    
+                                        
+                                            <i class="fa-regular fa-user"></i>
+                                        
+                                        关于&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                    
+                                        <li>
+                                        <a href="/about">ME
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a target="_blank" rel="noopener" href="https://github.com/hanakokoizumi">GITHUB
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a href="https://hanako.me">BLOG
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a href="/friends">友情链接
+                                        </a>
+                                        </li>
+                                    
+                                    </ul>
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="navbar-drawer w-full absolute top-0 left-0 bg-background-color">
+        <ul class="drawer-navbar-list flex flex-col justify-start items-center">
+            
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex justify-center items-center">
+                        <a class="rounded-3xl py-1.5 px-5 hover:border hover:!text-primary active:!text-primary group " 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-regular fa-house"></i>
+                                
+                                首页
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex justify-center items-center">
+                        <a class="rounded-3xl py-1.5 px-5 hover:border hover:!text-primary active:!text-primary group " 
+                        href="/archives"  >
+                             
+                                
+                                    <i class="fa-regular fa-archive"></i>
+                                
+                                归档
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex justify-center items-center">
+                        <a class="rounded-3xl py-1.5 px-5 hover:border hover:!text-primary active:!text-primary group " 
+                        target="_blank" rel="noopener" href="https://stats.uptimerobot.com/zyowMhGqLL"  >
+                             
+                                
+                                    <i class="fa-regular fa-chart-bar"></i>
+                                
+                                状态
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex justify-center items-center">
+                        <a class="rounded-3xl py-1.5 px-5 hover:border hover:!text-primary active:!text-primary group has-dropdown" 
+                        href="#" onClick="return false;">
+                            
+                                
+                                    <i class="fa-regular fa-user"></i>
+                                
+                                关于&nbsp;<i class="group-hover:rotate-180 transition-transform fa-solid fa-chevron-down"></i>
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                              
+                        
+                            <li class="drawer-navbar-item text-base flex justify-center items-center hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                <a class="py-0.5" href="/about">ME</a>
+                            </li>
+                        
+                            <li class="drawer-navbar-item text-base flex justify-center items-center hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                <a class="py-0.5" target="_blank" rel="noopener" href="https://github.com/hanakokoizumi">GITHUB</a>
+                            </li>
+                        
+                            <li class="drawer-navbar-item text-base flex justify-center items-center hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                <a class="py-0.5" href="https://hanako.me">BLOG</a>
+                            </li>
+                        
+                            <li class="drawer-navbar-item text-base flex justify-center items-center hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                <a class="py-0.5" href="/friends">友情链接</a>
+                            </li>
+                        
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            
+                
+                
+                <img src="/img/ec20-issabel/Untitled%201.png" alt="EC20 模块+Issabel 实现网络电话" class="max-w-none"/>
+                
+                <h1 class="article-title-cover">EC20 模块+Issabel 实现网络电话</h1>
+            
+            </div>
+            
+                    
+        
+        
+            <div class="article-header flex flex-row gap-2 items-center">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="/img/hnk.jpg">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">Hanako</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2023-10-22 01:49:33</span>
+        <span class="mobile">2023-10-22 01:49:33</span>
+        <span class="hover-info">创建</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2023-10-22 22:49:18</span>
+            <span class="mobile">2023-10-22 22:49:18</span>
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/%E9%9A%8F%E4%BE%BF%E6%8A%98%E8%85%BE/">随便折腾</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Issabel/">Issabel</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/VoIP/">VoIP</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body">
+            <p><del>作为一个卡粉+赛博世界游民（不是），拥有一堆各国手机号码是基本的素养</del>，这就导致我手里的各种卡变得非常的多，同时管理 114514 个号码就成了难题。</p>
+<p>我刚开始用的是 <a class="link"   target="_blank" rel="noopener" href="https://github.com/pppscn/SmsForwarder" >pppscn&#x2F;SmsForwarder <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>，通过 Telegram 转发短信到我手里。但是这套方案用下来有几个缺点：</p>
+<ol>
+<li>只能接收短信，不能接打电话；</li>
+<li>50 元以下的能接收短信的手机就算是双卡也只能是 4G+2G 双卡双待，然而联通 2G 基本退网，相当于单卡手机；</li>
+<li>不利于远程控制、集中管理。</li>
+</ol>
+<p>也想过猫池，但鱼上看了一圈，这价格还是算了。</p>
+<p>之前做过需要 4G 联网的物联网项目，买过移远的模块，就上天猫的移远旗舰店走了一圈，可惜客服说的支持语音的最便宜的模块还挺贵的，只好作罢。</p>
+<p>后来找到这两篇文章：</p>
+<ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://sparktour.me/2022/10/08/quectel-ec20-asterisk-freepbx-gsm-gateway/" >使用EC20模块配合asterisk及freepbx实现短信转发和网络电话 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://blog.wsl.moe/2023/03/%E5%AE%89%E8%A3%85%E5%9F%BA%E4%BA%8E-quectel-ec20-%E6%A8%A1%E5%9D%97%E7%9A%84%E7%9F%AD%E4%BF%A1%E5%8F%8A%E8%AF%AD%E9%9F%B3%E8%BD%AC%E5%8F%91%E6%9C%8D%E5%8A%A1/" >安装基于 Quectel EC20 模块的短信及语音转发服务 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
+</ul>
+<p>看起来还不错，而且鱼上找到了一家卖 48 块钱一片的 <code>EC20CEFAG-512-SGNS</code> 的店，相当于单卡成本 <code>48（模块）+12（MiniPCIE转接板）+6（天线）=66 元</code> ，比较划算，直接安排。</p>
+<p>他们使用的 PBX 是 FreePBX，于是我在跟着他们成功地领略了 FreePBX Distro <strong>遥遥领先</strong>的 CentOS 7 + Kernel 3.10 + 超多商业广告糊脸之后格盘了。上述第一篇文章中提到的 FreePBX Distro 不支持 UAC（USB Audio Class）就是因为 Kernel 3.10 不支持 UAC。</p>
+<p>了解到 Issabel，它是开源 PBX Elastix 的分支，由用户&#x2F;开发人员社区在 3CX 收购 Elastix ，关闭社区，停止分发和开发开源版本并发布专有版本后开发。IssabelPBX 2 使用经现代化调教的 FreePBX 面板，风格比 FreePBX 更简洁、美观，而且没有商业广告和多余的插件，官方提供了安装脚本；Issabel 4 综合了服务器管理、邮件服务器、传真服务器等，官方也提供了脚本，但必须安装在 CentOS 7 上。这两个版本都在更新。</p>
+<p>真不懂 CentOS 7 有什么好的。反正 IssabelPBX 2 够用。</p>
+<h2 id="配置模块"><a href="#配置模块" class="headerlink" title="配置模块"></a><strong>配置模块</strong></h2><p>如果是在 Windows 下配置，需要先安装<a class="link"   target="_blank" rel="noopener" href="https://www.qudong51.net/qudong/961.html" >移远的驱动 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>。</p>
+<p>驱动安装成功后，模块释放出 4 个 ttyUSB 端口：</p>
+<table>
+<thead>
+<tr>
+<th>接口</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&#x2F;dev&#x2F;ttyUSB0</td>
+<td></td>
+</tr>
+<tr>
+<td>&#x2F;dev&#x2F;ttyUSB1</td>
+<td>PCM 语音，GPS 信号</td>
+</tr>
+<tr>
+<td>&#x2F;dev&#x2F;ttyUSB2</td>
+<td>AT 控制命令</td>
+</tr>
+<tr>
+<td>&#x2F;dev&#x2F;ttyUSB3</td>
+<td></td>
+</tr>
+</tbody></table>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.rhydolabz.com/documents/30/Quectel_EC20_R2.1_AT_Commands_Manual_V1.0.pdf" >这里 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>提供了移远 EC20 系列的 AT 命令文档。</p>
+<h3 id="重置模块"><a href="#重置模块" class="headerlink" title="重置模块"></a><strong>重置模块</strong></h3><p>重置命令为 <code>at+qprtpara=3</code>，以防<del>前主人错误调教</del>；重置后需要<code>AT+CFUN=1,1</code>重启。</p>
+<h3 id="启用-VoLTE"><a href="#启用-VoLTE" class="headerlink" title="启用 VoLTE"></a><strong>启用 VoLTE</strong></h3><p>按理来说自带的 VoLTE 是可以用，但是移远开灵车有什么办法，不知道是不是联通特色。</p>
+<p>据上面的文章说可能是针对物联网卡的配置，可是能打电话的物联网卡我真没听说。</p>
+<ol>
+<li>打开 IMS：<code>AT+QCFG=&quot;ims&quot;,1</code></li>
+<li>关闭自动选择mbn文件：<code>AT+QMBNCFG=&quot;AutoSel&quot;,0</code></li>
+<li>反激活当前的mbn：<code>at+qmbncfg=&quot;deactivate&quot;</code></li>
+<li>强制选择3gpp：<code>AT+QMBNCFG=&quot;select&quot;,&quot;ROW_Generic_3GPP&quot;</code></li>
+<li>重启：<code>AT+CFUN=1,1</code></li>
+</ol>
+<p>重启完了以后，可以使用 <code>AT+QCFG=&quot;ims&quot;</code> 查询 VoLTE 激活状态。 如果是 <code>+QCFG: &quot;ims&quot;,1,1</code>，就代表 VoLTE 已经启用并激活， 如果是 <code>+QCFG: &quot;ims&quot;,1,0</code> 就代表 VoLTE 启用了但没有激活， 如果是 <code>+QCFG: &quot;ims&quot;,0,0</code> 则代表 VoLTE 没有启用。</p>
+<h3 id="启用-UAC"><a href="#启用-UAC" class="headerlink" title="启用 UAC"></a><strong>启用 UAC</strong></h3><blockquote>
+<p>不知道什么情况，我的模块在不开启 UAC 的情况下，对方会听到吱吱的噪音，非常影响通话。</p>
+</blockquote>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AT+QCFG=&quot;usbcfg&quot;,0x2C7C,0x0125,1,1,1,1,1,0,1</span><br></pre></td></tr></table></figure></div>
+
+<p>倒数第二个参数是启用 adb，倒数第一个参数是启用 UAC。</p>
+<p>激活之后可以通过 <code>adb devices</code> 或 <code>aplay -L</code> 查看有没有一个android设备。</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">root@ayaka:~# adb devices</span><br><span class="line">List of devices attached</span><br><span class="line">(no serial number)  device</span><br><span class="line"></span><br><span class="line">root@ayaka:~# aplay -L</span><br><span class="line">......</span><br><span class="line">hw:CARD=Android,DEV=0</span><br><span class="line">    Android, USB Audio</span><br><span class="line">    Direct hardware device without any conversions</span><br><span class="line">plughw:CARD=Android,DEV=0</span><br><span class="line">    Android, USB Audio</span><br><span class="line">    Hardware device with all software conversions</span><br><span class="line">default:CARD=Android</span><br><span class="line">    Android, USB Audio</span><br><span class="line">    Default Audio Device</span><br><span class="line">sysdefault:CARD=Android</span><br><span class="line">    Android, USB Audio</span><br><span class="line">    Default Audio Device</span><br><span class="line">front:CARD=Android,DEV=0</span><br><span class="line">    Android, USB Audio</span><br><span class="line">    Front output / input</span><br><span class="line">surround21:CARD=Android,DEV=0</span><br><span class="line">    Android, USB Audio</span><br><span class="line">    2.1 Surround output to Front and Subwoofer speakers</span><br><span class="line">surround40:CARD=Android,DEV=0</span><br><span class="line">    Android, USB Audio</span><br><span class="line">    4.0 Surround output to Front and Rear speakers</span><br><span class="line">surround41:CARD=Android,DEV=0</span><br><span class="line">    Android, USB Audio</span><br><span class="line">    4.1 Surround output to Front, Rear and Subwoofer speakers</span><br><span class="line">surround50:CARD=Android,DEV=0</span><br><span class="line">    Android, USB Audio</span><br><span class="line">    5.0 Surround output to Front, Center and Rear speakers</span><br><span class="line">surround51:CARD=Android,DEV=0</span><br><span class="line">    Android, USB Audio</span><br><span class="line">    5.1 Surround output to Front, Center, Rear and Subwoofer speakers</span><br><span class="line">surround71:CARD=Android,DEV=0</span><br><span class="line">    Android, USB Audio</span><br><span class="line">    7.1 Surround output to Front, Center, Side, Rear and Woofer speakers</span><br><span class="line">iec958:CARD=Android,DEV=0</span><br><span class="line">    Android, USB Audio</span><br><span class="line">    IEC958 (S/PDIF) Digital Audio Output</span><br><span class="line">dmix:CARD=Android,DEV=0</span><br><span class="line">    Android, USB Audio</span><br><span class="line">    Direct sample mixing device</span><br><span class="line">usbstream:CARD=Android</span><br><span class="line">    Android</span><br><span class="line">    USB Stream Output</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="安装-Issabel"><a href="#安装-Issabel" class="headerlink" title="安装 Issabel"></a><strong>安装 Issabel</strong></h2><p>官方网站的 ISO 是 Issabel 4，系统是 CentOS 7，我选择在纯净的 Debian 11 上安装 IssabelPBX 2。</p>
+<h3 id="安装本体"><a href="#安装本体" class="headerlink" title="安装本体"></a><strong>安装本体</strong></h3><p>官方提供了安装脚本，一行命令解决：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl http://repo.issabel.org/install-debian-install_amp | bash</span><br></pre></td></tr></table></figure></div>
+
+<p>该脚本会安装 Issabel 和 Asterisk 16 及其相关依赖，Issabel 默认占用 80 端口和 443 端口，请保持畅通，安装后可修改。</p>
+<h3 id="安装移远驱动"><a href="#安装移远驱动" class="headerlink" title="安装移远驱动"></a><strong>安装移远驱动</strong></h3><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/IchthysMaranatha/asterisk-chan-quectel</span><br><span class="line">cd asterisk-chan-quectel</span><br><span class="line"></span><br><span class="line">./bootstrap</span><br><span class="line">./configure --with-astversion=16</span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line"></span><br><span class="line">cp uac/quectel.conf /etc/asterisk</span><br></pre></td></tr></table></figure></div>
+
+<p>编辑 <code>/etc/asterisk/quectel.conf</code>，将最后四行的注释去掉：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[quectel0]</span><br><span class="line">audio=/dev/ttyUSB1                       ; tty port for Audio, set as ttyUSB4 for Simcom if no other dev present</span><br><span class="line">data=/dev/ttyUSB2                        ; tty port for AT commands;no default value</span><br><span class="line">quec_uac=1                              ; Uncomment line if using UAC mode</span><br><span class="line">alsadev=hw:CARD=Android,DEV=0           ; Uncomment if using UAC, set device name or index as reqd</span><br></pre></td></tr></table></figure></div>
+
+<p>编辑 <code>/etc/asterisk/extensions_custom.conf</code> ，添加以下内容：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[incoming-mobile]</span><br><span class="line">exten =&gt; sms,1,Verbose(Incoming SMS from $&#123;CALLERID(num)&#125; $&#123;BASE64_DECODE($&#123;SMS_BASE64&#125;)&#125;)</span><br><span class="line">;store</span><br><span class="line">exten =&gt; sms,n,System(echo &#x27;$&#123;STRFTIME($&#123;EPOCH&#125;,,%Y-%m-%d %H:%M:%S)&#125; - $&#123;QUECTELNAME&#125; - $&#123;CALLERID(num)&#125;: $&#123;BASE64_DECODE($&#123;SMS_BASE64&#125;)&#125;&#x27; &gt;&gt; /var/log/asterisk/sms.txt)</span><br><span class="line">;for tg bot use</span><br><span class="line">;exten =&gt; sms,n,System(echo &#x27;$&#123;STRFTIME($&#123;EPOCH&#125;,,%Y-%m-%d %H:%M:%S)&#125; - $&#123;QUECTELNAME&#125; - $&#123;CALLERID(num)&#125;\n$&#123;BASE64_DECODE($&#123;SMS_BASE64&#125;)&#125;&#x27; &gt;&gt; /var/log/asterisk/unread_sms/$&#123;STRFTIME($&#123;EPOCH&#125;,,%Y%m%d%H%M%S)&#125;-$&#123;CALLERID(num)&#125;.txt)</span><br><span class="line">exten =&gt; sms,n,Hangup()</span><br><span class="line"></span><br><span class="line">exten =&gt; ussd,1,Verbose(Incoming USSD: $&#123;BASE64_DECODE($&#123;USSD_BASE64&#125;)&#125;)</span><br><span class="line">exten =&gt; ussd,n,System(echo &#x27;$&#123;STRFTIME($&#123;EPOCH&#125;,,%Y-%m-%d %H:%M:%S)&#125; - $&#123;QUECTELNAME&#125;: $&#123;BASE64_DECODE($&#123;USSD_BASE64&#125;)&#125;&#x27; &gt;&gt; /var/log/asterisk/ussd.txt)</span><br><span class="line">exten =&gt; ussd,n,Hangup()</span><br><span class="line"></span><br><span class="line">exten =&gt; _.,1,Set(CALLERID(name)=$&#123;CALLERID(num)&#125;)</span><br><span class="line">exten =&gt; _.,n,Goto(from-trunk,$&#123;EXTEN&#125;,1)</span><br></pre></td></tr></table></figure></div>
+
+<blockquote>
+<p>短信默认保存到 &#x2F;var&#x2F;log&#x2F;asterisk&#x2F;sms.txt；如果需要转发到 Telegram，就把 ;for tg bot use 下方的一行的注释去掉，并创建 &#x2F;var&#x2F;log&#x2F;asterisk&#x2F;unread_sms&#x2F; 文件夹，用户组和所有者都设为 asterisk。</p>
+</blockquote>
+<h3 id="设备权限配置"><a href="#设备权限配置" class="headerlink" title="设备权限配置"></a><strong>设备权限配置</strong></h3><p><code>asterisk</code> 用户默认没有访问 <code>/dev/ttyUSB*</code> 的权限。通过 <code>stat /dev/ttyUSB2</code> 命令可以看到这些设备属于 <code>dialout</code> 组：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">root@ayaka:~# stat /dev/ttyUSB2</span><br><span class="line">  文件：/dev/ttyUSB2</span><br><span class="line">  大小：0          块：0          IO 块：4096   字符特殊文件</span><br><span class="line">设备：5h/5d    Inode：479         硬链接：1     设备类型：bc,2</span><br><span class="line">权限：(0777/crwxrwxrwx)  Uid：(    0/    root)   Gid：(   20/ dialout)</span><br></pre></td></tr></table></figure></div>
+
+<p>需要将 <code>asterisk</code> 用户加入 <code>dialout</code> 组，否则启动 Asterisk 时会不断报告 <code>Permission Denied</code>。</p>
+<p>如果频繁报告 <code>Device or resource busy</code> ，用 <code>lsof</code> 查看占用：</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/ec20-issabel/Untitled.png"
+                     
+                ></p>
+<p>发现 ModemManager 占用了设备， <code>systemctl disable —now ModemManager</code> 禁用即可。</p>
+<p>最后重启 <code>asterisk</code>：</p>
+<p><code>systemctl restart asterisk</code></p>
+<h2 id="配置-Issabel"><a href="#配置-Issabel" class="headerlink" title="配置 Issabel"></a><strong>配置 Issabel</strong></h2><p>浏览器输入 Issabel 所在的 IP 地址打开 Issabel 控制台，点击中央的 <code>IssabelPBX Administration</code> 输入用户名 <code>admin</code> 和安装过程中设置的密码登录。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/ec20-issabel/Untitled%201.png"
+                     
+                ></p>
+<h3 id="添加分机"><a href="#添加分机" class="headerlink" title="添加分机"></a><strong>添加分机</strong></h3><p>Applications-Extensions 添加分机号。</p>
+<p>这里选择 IAX2 Device，因为 NAT 配置方便，只需要转发 4569 端口即可；而 SIP 需要转发 5060 和 10000-20000 所有的端口。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/ec20-issabel/Untitled%202.png"
+                     
+                ></p>
+<p>右下角点击 <code>Submit</code> 继续。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/ec20-issabel/Untitled%203.png"
+                     
+                ></p>
+<p>User Extension 为所指定的用户分机号，Display Name 为显示名，可以在客户端中看到。</p>
+<p>Secret 为登录密码，可以自己指定。</p>
+<p>其他部分不需要修改，Submit 提交即可。</p>
+<p>Issabel 的列表比较隐蔽，在右上角的小按钮；默认为添加页面，我也差点找不到以为出 bug 了。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/ec20-issabel/Untitled%204.png"
+                     
+                ></p>
+<p>如果有其它设备，需要逐个添加；如果是 SIP 话机或者内网设备，可以考虑添加 SIP 设备；如果是手机，建议使用 IAX2。</p>
+<blockquote>
+<p>我曾将 SIP 端口 5060 穿透到公网，第三天 VPS 流量没了，一查日志发现 SIP 被人爆破了；IAX2 暂时没出事。</p>
+</blockquote>
+<h3 id="添加中继"><a href="#添加中继" class="headerlink" title="添加中继"></a><strong>添加中继</strong></h3><p>Connectivity-Trunks，选择 <code>Add Custom Trunk</code> 。</p>
+<p><code>Trunk Name</code> 随便填，Custom Dial String 填 <code>Quectel/quectel0/$OUTNUM$</code>，直接 Submit。</p>
+<p>记得删掉除了刚刚添加的 Trunk 外其它自动生成的 Trunk。</p>
+<h3 id="添加响铃组"><a href="#添加响铃组" class="headerlink" title="添加响铃组"></a><strong>添加响铃组</strong></h3><p>如果有多台设备，在呼入时要求所有设备同时响铃，其中一台设备接听后其它设备自动停止响铃，需要将这些设备加入 Ring Group。</p>
+<p>Applications-Ring Groups 添加响铃组，<code>Ring-Group Number</code> 要独立于其它已添加的分机号，<code>Group Description</code> 随便填，<code>Extension List</code> 用换行符分隔，可以用 <code>Extension Quick Pick</code> 直接选择， <code>Destination if no answer</code> 可以选 <code>Terminate Call</code> 即挂断。</p>
+<h3 id="添加入站路由"><a href="#添加入站路由" class="headerlink" title="添加入站路由"></a><strong>添加入站路由</strong></h3><p>Connectivity-Inbound Routes 添加入站路由。</p>
+<p><code>Description</code> 随便填，<code>Set Destination</code> 选择 Extension 或者 Ring Group，然后在下方的出口里选择刚添加的。</p>
+<h3 id="添加出站路由"><a href="#添加出站路由" class="headerlink" title="添加出站路由"></a><strong>添加出站路由</strong></h3><p>Connectivity-Outbound Routes 添加出站路由。</p>
+<p><code>Route Name</code> 随便填，<code>Trunk Sequence for Matched Routes</code> 选刚刚添加的 Trunk，设置一个 <code>X.</code> 作为 Pattern 以匹配所有号码。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/img/ec20-issabel/Untitled%205.png"
+                     
+                ></p>
+<h2 id="测试呼叫"><a href="#测试呼叫" class="headerlink" title="测试呼叫"></a><strong>测试呼叫</strong></h2><p>到这里，点击左上角的 Apply Config，然后就可以测试电话了。我使用的是 Zoiper，填写后会自动识别使用的协议。给自己打个电话就可以测试了。</p>
+<h2 id="短信转发"><a href="#短信转发" class="headerlink" title="短信转发"></a><strong>短信转发</strong></h2><p>拿上面博主的脚本稍微改了一下，添加了自动重试。</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> schedule</span><br><span class="line"><span class="keyword">from</span> retrying <span class="keyword">import</span> retry</span><br><span class="line"></span><br><span class="line">tg_bot_token = <span class="string">&quot;TOKEN&quot;</span></span><br><span class="line">sms_log_dir = <span class="string">&quot;/var/log/asterisk/unread_sms/&quot;</span></span><br><span class="line">tg_send_msg_url = <span class="string">&quot;https://api.telegram.org/bot&quot;</span>+tg_bot_token+<span class="string">&quot;/sendMessage&quot;</span></span><br><span class="line">tg_receive_msg_url = <span class="string">&quot;https://api.telegram.org/bot&quot;</span>+tg_bot_token+<span class="string">&quot;/getUpdates&quot;</span></span><br><span class="line">tg_receive_msg_init_count = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#iterate all files in sms_log_dir</span></span><br><span class="line"><span class="meta">@retry(<span class="params">stop_max_attempt_number=<span class="number">3</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">receive_sms</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;recv poll start&quot;</span>)</span><br><span class="line">    <span class="keyword">for</span> file <span class="keyword">in</span> os.listdir(sms_log_dir):</span><br><span class="line">        f = <span class="built_in">open</span>(sms_log_dir+file, <span class="string">&quot;r&quot;</span>)</span><br><span class="line">        sms_text = f.read()</span><br><span class="line">        send_body = &#123;&#125;</span><br><span class="line">        send_body[<span class="string">&#x27;chat_id&#x27;</span>] = <span class="string">&quot;CHAT ID&quot;</span></span><br><span class="line">        send_body[<span class="string">&#x27;text&#x27;</span>] = sms_text</span><br><span class="line">        requests.get(tg_send_msg_url, json=send_body)</span><br><span class="line">        os.remove(sms_log_dir+file)</span><br><span class="line"></span><br><span class="line"><span class="meta">@retry(<span class="params">stop_max_attempt_number=<span class="number">3</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">update_tg_receive_msg_init_count</span>():</span><br><span class="line">    new_msg = requests.get(tg_receive_msg_url).json()</span><br><span class="line">    <span class="keyword">if</span> new_msg[<span class="string">&#x27;result&#x27;</span>]:</span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;processed_update_id.txt&#x27;</span>, <span class="string">&#x27;w&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">            f.write(<span class="built_in">str</span>(new_msg[<span class="string">&#x27;result&#x27;</span>][-<span class="number">1</span>][<span class="string">&#x27;update_id&#x27;</span>]))</span><br><span class="line"></span><br><span class="line"><span class="meta">@retry(<span class="params">stop_max_attempt_number=<span class="number">3</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">send_sms</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;send poll start&quot;</span>)</span><br><span class="line">    f = <span class="built_in">open</span>(<span class="string">&#x27;processed_update_id.txt&#x27;</span>, <span class="string">&quot;r&quot;</span>)</span><br><span class="line">    processed_update_id = f.read()</span><br><span class="line">    new_msg = requests.get(tg_receive_msg_url).json()</span><br><span class="line">    <span class="keyword">if</span> new_msg[<span class="string">&#x27;result&#x27;</span>]:</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> new_msg[<span class="string">&#x27;result&#x27;</span>]:</span><br><span class="line">            <span class="keyword">if</span> i[<span class="string">&#x27;update_id&#x27;</span>] &gt; <span class="built_in">int</span>(processed_update_id):</span><br><span class="line">                <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;processed_update_id.txt&#x27;</span>, <span class="string">&#x27;w&#x27;</span>) <span class="keyword">as</span> g:</span><br><span class="line">                    g.write(<span class="built_in">str</span>(i[<span class="string">&#x27;update_id&#x27;</span>]))</span><br><span class="line">                <span class="keyword">if</span> (<span class="string">&#x27;text&#x27;</span> <span class="keyword">in</span> i[<span class="string">&#x27;message&#x27;</span>]):</span><br><span class="line">                    command = <span class="built_in">str</span>(i[<span class="string">&#x27;message&#x27;</span>][<span class="string">&#x27;text&#x27;</span>])</span><br><span class="line">                    <span class="comment">#/sendsms quectel0 10010 cxll</span></span><br><span class="line">                    <span class="keyword">if</span> command.startswith(<span class="string">&#x27;/sendsms&#x27;</span>):</span><br><span class="line">                        command_list = command.split(<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">                        <span class="keyword">if</span> <span class="built_in">len</span>(command_list) == <span class="number">4</span>:</span><br><span class="line">                            dongle = command_list[<span class="number">1</span>]</span><br><span class="line">                            dest = command_list[<span class="number">2</span>]</span><br><span class="line">                            context = command_list[<span class="number">3</span>]</span><br><span class="line">                            <span class="comment">#asterisk -rx &#x27;quectel sms quectel0 10010 &quot;cxll&quot;&#x27;</span></span><br><span class="line">                            asterisk_command = <span class="string">&quot;asterisk -rx &quot;</span> + <span class="string">&quot;&#x27;quectel sms &quot;</span> + dongle + <span class="string">&quot; &quot;</span> + dest + <span class="string">&quot; &quot;</span> + context + <span class="string">&quot;&#x27;&quot;</span></span><br><span class="line">                            <span class="built_in">print</span>(asterisk_command)</span><br><span class="line">                            os.system(asterisk_command)</span><br><span class="line"></span><br><span class="line">schedule.every(<span class="number">5</span>).seconds.do(send_sms)</span><br><span class="line">schedule.every(<span class="number">5</span>).seconds.do(receive_sms)</span><br><span class="line"></span><br><span class="line">update_tg_receive_msg_init_count()</span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    schedule.run_pending()</span><br><span class="line">    time.sleep(<span class="number">1</span>)</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a><strong>写在最后</strong></h2><p>这台机器可能会顺便做主要服务器之一使用吧。</p>
+<p>之前装 FreePBX 的废物 CentOS 的时候可没这个想法。</p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>标题:</strong> EC20 模块+Issabel 实现网络电话</li>
+        <li><strong>作者:</strong> Hanako</li>
+        <li><strong>创建于
+                :</strong> 2023-10-22 01:49:33</li>
+        
+            <li>
+                <strong>更新于
+                    :</strong> 2023-10-22 22:49:18
+            </li>
+        
+        <li>
+            <strong>链接:</strong> https://hanako.me/ec20_issabel.html
+        </li>
+        <li>
+            <strong>
+                版权声明:
+            </strong>
+            
+            本文章采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a> 进行许可。
+            
+
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/Issabel/">#Issabel</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/VoIP/">#VoIP</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                        rel="next"
+                        href="/gpu_passthrough.html"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">Ivy Bridge 平台 PVE 直通 RX550 显卡</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">此页目录</div>
+        <div class="page-title">EC20 模块+Issabel 实现网络电话</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%A8%A1%E5%9D%97"><span class="nav-text">配置模块</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%8D%E7%BD%AE%E6%A8%A1%E5%9D%97"><span class="nav-text">重置模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AF%E7%94%A8-VoLTE"><span class="nav-text">启用 VoLTE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AF%E7%94%A8-UAC"><span class="nav-text">启用 UAC</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-Issabel"><span class="nav-text">安装 Issabel</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E6%9C%AC%E4%BD%93"><span class="nav-text">安装本体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E7%A7%BB%E8%BF%9C%E9%A9%B1%E5%8A%A8"><span class="nav-text">安装移远驱动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E5%A4%87%E6%9D%83%E9%99%90%E9%85%8D%E7%BD%AE"><span class="nav-text">设备权限配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE-Issabel"><span class="nav-text">配置 Issabel</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E5%88%86%E6%9C%BA"><span class="nav-text">添加分机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E4%B8%AD%E7%BB%A7"><span class="nav-text">添加中继</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E5%93%8D%E9%93%83%E7%BB%84"><span class="nav-text">添加响铃组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E5%85%A5%E7%AB%99%E8%B7%AF%E7%94%B1"><span class="nav-text">添加入站路由</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E5%87%BA%E7%AB%99%E8%B7%AF%E7%94%B1"><span class="nav-text">添加出站路由</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E5%91%BC%E5%8F%AB"><span class="nav-text">测试呼叫</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%AD%E4%BF%A1%E8%BD%AC%E5%8F%91"><span class="nav-text">短信转发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%99%E5%9C%A8%E6%9C%80%E5%90%8E"><span class="nav-text">写在最后</span></a></li></ol>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2023&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">Hanako</a>
+        </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a> 驱动</span>
+            <span class="text-sm lg:block">主题&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.5.0</a></span>
+        </div>
+        
+        
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+</main>
+
+
+    
+<script src="/js/libs/Swup.min.js"></script>
+
+<script src="/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+
+
+
+<script src="/js/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/utils.js" type="module"></script>
+
+<script src="/js/main.js" type="module"></script>
+
+<script src="/js/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/layouts/categoryList.js" type="module"></script>
+
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js" type="module"></script>
+
+
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+<div class="post-scripts" data-swup-reload-script>
+    
+        
+<script src="/js/libs/anime.min.js"></script>
+
+        
+<script src="/js/tools/tocToggle.js" type="module"></script>
+
+<script src="/js/layouts/toc.js" type="module"></script>
+
+<script src="/js/plugins/tabs.js" type="module"></script>
+
+    
+</div>
+
+
+</body>
+</html>
