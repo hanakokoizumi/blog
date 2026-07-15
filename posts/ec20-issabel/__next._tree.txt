@@ -5,4 +5,4 @@
 :HL["/content-assets/ec20-issabel/Untitled%203.png","image"]
 :HL["/content-assets/ec20-issabel/Untitled%204.png","image"]
 :HL["/content-assets/ec20-issabel/Untitled%205.png","image"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"posts","param":null,"prefetchHints":0,"slots":{"children":{"name":"slug","param":{"type":"d","key":"ec20-issabel","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"Z6P-PVz1hC1KuOOTCyN5_"}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"posts","param":null,"prefetchHints":0,"slots":{"children":{"name":"slug","param":{"type":"d","key":"ec20-issabel","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"lyY2wjUkmGd_fjS7e6VbQ"}
