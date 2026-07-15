@@ -1,6 +1,6 @@
 1:"$Sreact.fragment"
-2:I[36395,["/_next/static/chunks/3uz72he1jgfte.js","/_next/static/chunks/1a5mqhx3f0mic.js"],""]
-3:I[35308,["/_next/static/chunks/3uz72he1jgfte.js","/_next/static/chunks/1a5mqhx3f0mic.js"],"OutletBoundary"]
+2:I[36395,["/_next/static/chunks/240h12iae5oxk.js","/_next/static/chunks/2ht6bxcq5z49j.js","/_next/static/chunks/1a5mqhx3f0mic.js"],""]
+3:I[35308,["/_next/static/chunks/240h12iae5oxk.js","/_next/static/chunks/2ht6bxcq5z49j.js","/_next/static/chunks/1a5mqhx3f0mic.js"],"OutletBoundary"]
 4:"$Sreact.suspense"
-0:{"rsc":["$","$1","c",{"children":[[["$","header",null,{"className":"page-intro site-shell","children":[["$","p",null,{"className":"eyebrow","children":"Categories"}],["$","h1",null,{"children":"分类"}],["$","p",null,{"children":"按一段旅程的主题，整理所有记录。"}]]}],["$","section",null,{"className":"taxonomy-grid site-shell","children":[["$","$L2","随便折腾",{"className":"taxonomy-link","href":"/categories/%E9%9A%8F%E4%BE%BF%E6%8A%98%E8%85%BE/","children":[["$","strong",null,{"children":"随便折腾"}],["$","span",null,{"children":"04"}]]}]]}]],null,["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"fw27HyzrYJiyfIl6yqJsS"}
+0:{"rsc":["$","$1","c",{"children":[[["$","header",null,{"className":"page-intro site-shell","children":[["$","p",null,{"className":"eyebrow","children":"Categories"}],["$","h1",null,{"children":"分类"}],["$","p",null,{"children":"按一段旅程的主题，整理所有记录。"}]]}],["$","section",null,{"className":"taxonomy-grid site-shell","children":[["$","$L2","随便折腾",{"className":"taxonomy-link","href":"/categories/%E9%9A%8F%E4%BE%BF%E6%8A%98%E8%85%BE/","children":[["$","strong",null,{"children":"随便折腾"}],["$","span",null,{"children":"04"}]]}]]}]],null,["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"-NtCqLCzzW0aFiiaGOn32"}
 5:null
