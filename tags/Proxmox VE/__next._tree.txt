@@ -1,2 +1,2 @@
-:HL["/_next/static/chunks/1suvd6z0nltm1.css","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"tags","param":null,"prefetchHints":0,"slots":{"children":{"name":"slug","param":{"type":"d","key":"Proxmox%20VE","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"-NtCqLCzzW0aFiiaGOn32"}
+:HL["/_next/static/chunks/3syije60tv4z0.css","style"]
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"tags","param":null,"prefetchHints":0,"slots":{"children":{"name":"slug","param":{"type":"d","key":"Proxmox%20VE","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"Z6P-PVz1hC1KuOOTCyN5_"}
