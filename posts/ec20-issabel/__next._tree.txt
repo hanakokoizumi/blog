@@ -1,8 +1,8 @@
-:HL["/_next/static/chunks/3z_rtrlr5bakv.css","style"]
+:HL["/_next/static/chunks/38-z6_9vcpomr.css","style"]
 :HL["/content-assets/ec20-issabel/Untitled.png","image"]
 :HL["/content-assets/ec20-issabel/Untitled%201.png","image"]
 :HL["/content-assets/ec20-issabel/Untitled%202.png","image"]
 :HL["/content-assets/ec20-issabel/Untitled%203.png","image"]
 :HL["/content-assets/ec20-issabel/Untitled%204.png","image"]
 :HL["/content-assets/ec20-issabel/Untitled%205.png","image"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"posts","param":null,"prefetchHints":0,"slots":{"children":{"name":"slug","param":{"type":"d","key":"ec20-issabel","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"ky61v9YJSrWHIfH7UCA2Q"}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"posts","param":null,"prefetchHints":0,"slots":{"children":{"name":"slug","param":{"type":"d","key":"ec20-issabel","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"WYBECLovNebC7O_yaMR4n"}
